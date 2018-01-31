@@ -59,7 +59,7 @@ function Users({location, dispatch, users}) {
       })
     }
   }
-
+  
   const userSearchProps = {
     field,
     keyword,
@@ -85,7 +85,7 @@ function Users({location, dispatch, users}) {
   }
 
   const UserModalGen = () => <UserModal {...userModalProps}/>
-  
+  console.log(userListProps,'OOOOO')
 
   return (
     <div className='content-inner'>

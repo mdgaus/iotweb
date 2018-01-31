@@ -16,3 +16,9 @@ export async function query(params) {
     data: params
   })
 }
+export async function queryRegion(params) {
+  return request('http://139.59.95.113:8080/allRegion', {
+    method: 'get',
+    data: params
+  })
+}

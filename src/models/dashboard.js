@@ -78,10 +78,12 @@ export default {
     },
     effects : {
         *query({payload}, {call, put}) {
+
             const data = yield call(query, parse(payload))
             yield put({type: 'queryWeather', payload: {...data}
             })
         },
+        
         *queryWeather({payload}, {call, put}) {
           try{
                 var position = yield call(getCurrentPosition); // get geo information lat,long

@@ -50,5 +50,41 @@ module.exports = [
                 name: 'Sign Up'
             }
         ]
+    },
+    {
+        key: 'user',
+        name: 'User',
+        icon: 'team',
+        clickable: false,
+        child: [
+            {
+                key: 'user',
+                name: 'user'
+            }, {
+                key: 'userType',
+                name: 'userType'
+            }
+        ]
+    },
+    {
+        key: 'region',
+        name: 'Region',
+        icon: 'pushpin-o',
+        clickable: true,
+       
+    },
+    {
+        key: 'zone',
+        name: 'Zone',
+        icon: 'pushpin-o',
+        clickable: true,
+       
+    },
+    {
+        key: 'branch',
+        name: 'Branch',
+        icon: 'pushpin-o',
+        clickable: true,
+       
     }
 ]

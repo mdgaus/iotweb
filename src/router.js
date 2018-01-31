@@ -99,7 +99,52 @@ export default function ({history, app}) {
                         })
                     }
                 },
-                 {
+                {
+                    path: 'region',
+                    name: 'region',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/region/add-region'))
+                        })
+                    }
+                },
+                {
+                    path: 'zone',
+                    name: 'zone',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/zone'))
+                        })
+                    }
+                },
+                {
+                    path: 'users',
+                    name: 'users',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/users'))
+                        })
+                    }
+                },
+                {
+                    path: 'user/userType',
+                    name: 'user/userType',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/userType'))
+                        })
+                    }
+                },
+                {
+                    path: 'branch',
+                    name: 'branch',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/branch'))
+                        })
+                    }
+                },
+                {
                     path: '*',
                     name: 'error',
                     getComponent(nextState, cb) {
@@ -108,6 +153,7 @@ export default function ({history, app}) {
                         })
                     }
                 }
+                
             ]
         }
     ]
