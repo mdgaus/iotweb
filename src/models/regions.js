@@ -1,9 +1,9 @@
-import { create, remove, update, query } from '../services/branch'
+import { create, remove, update, query } from '../services/regions'
 import { parse } from 'qs'
 
 export default {
 
-  namespace: 'branch',
+  namespace: 'regions',
 
   state: {
     list: [],
@@ -23,7 +23,7 @@ export default {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/table/branch') {
+        if (location.pathname === '/table/regions') {
           dispatch({
             type: 'query',
             payload: location.query

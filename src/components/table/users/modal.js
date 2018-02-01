@@ -19,7 +19,9 @@ const formItemLayout = {
     span: 14
   }
 }
-
+const displayNone = {
+  display: "none"
+}
 const modal = ({
   visible,
   type,
@@ -59,9 +61,16 @@ const modal = ({
     <LocaleProvider locale={enUS}>
       <Modal {...modalOpts}>
         <Form horizontal>
-          <FormItem label='Name：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('name', {
-              initialValue: item.name,
+
+          <FormItem style={displayNone} label='_id' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('_id', {
+              initialValue: item._id,
+             
+            })(<Input/>)}
+          </FormItem>
+          <FormItem label='Zone Name' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('zoneName', {
+              initialValue: item.zoneName,
               rules: [
                 {
                   required: true,
@@ -70,9 +79,9 @@ const modal = ({
               ]
             })(<Input/>)}
           </FormItem>
-          <FormItem label='User Name：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('nickName', {
-              initialValue: item.nickName,
+          <FormItem label='region Name：' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('regionId', {
+              initialValue: item.regionId,
               rules: [
                 {
                   required: true,
@@ -81,68 +90,7 @@ const modal = ({
               ]
             })(<Input/>)}
           </FormItem>
-          <FormItem label='Gender' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('isMale', {
-              initialValue: item.isMale,
-              rules: [
-                {
-                  required: true,
-                  type: 'boolean',
-                  message: 'Gender Must be Select'
-                }
-              ]
-            })(
-              <Radio.Group>
-                <Radio value>Male</Radio>
-                <Radio value={false}>Female</Radio>
-              </Radio.Group>
-            )}
-          </FormItem>
-          <FormItem label='Age：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('age', {
-              initialValue: item.age,
-              rules: [
-                {
-                  required: true,
-                  type: 'number',
-                  message: 'Age Cannot be Filled'
-                }
-              ]
-            })(<InputNumber min={18} max={100}/>)}
-          </FormItem>
-          <FormItem label='Phone：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('phone', {
-              initialValue: item.phone,
-              rules: [
-                {
-                  required: true,
-                  message: 'Phone Cannot be Filled'
-                }
-              ]
-            })(<Input/>)}
-          </FormItem>
-          <FormItem label='Email：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('email', {
-              initialValue: item.email,
-              rules: [
-                {
-                  required: true,
-                  message: 'Email Cannot be Filled'
-                }
-              ]
-            })(<Input/>)}
-          </FormItem>
-          <FormItem label='Address：' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('address', {
-              initialValue: item.address,
-              rules: [
-                {
-                  required: true,
-                  message: 'Address Cannot be Filled'
-                }
-              ]
-            })(<Input/>)}
-          </FormItem>
+          
         </Form>
       </Modal>
     </LocaleProvider>

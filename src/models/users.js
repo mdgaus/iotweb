@@ -24,6 +24,7 @@ export default {
     setup ({ dispatch, history }) {
       history.listen(location => {
         if (location.pathname === '/table/users') {
+      
           dispatch({
             type: 'query',
             payload: location.query
@@ -34,17 +35,22 @@ export default {
   },
 
   effects: {
+
     *query ({ payload }, { call, put }) {
+      //console.log('here',payload)
       yield put({ type: 'showLoading' })
       const data = yield call(query, parse(payload))
       if (data) {
+
         yield put({
           type: 'querySuccess',
           payload: {
             list: data.data,
             pagination: data.page
           }
+
         })
+
       }
     },
     *'delete' ({ payload }, { call, put }) {
@@ -66,37 +72,50 @@ export default {
     *create ({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
+      // console.log('====',payload)
       const data = yield call(create, payload)
+      const data2 = yield call(query, parse(payload))
       if (data && data.success) {
-        yield put({
-          type: 'querySuccess',
-          payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current
+        //console.log('====',data2)
+        yield put({ type: 'showLoading' })
+        const data = yield call(query, parse(payload))
+        if (data) {
+
+          yield put({
+            type: 'querySuccess',
+            payload: {
+              list: data.data,
+              pagination: data.page
             }
-          }
-        })
+
+          })
+
+        }
       }
     },
     *update ({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
-      const id = yield select(({ users }) => users.currentItem.id)
+      
+      const id = yield select(({ users }) => users.currentItem._id)
       const newUser = { ...payload, id }
+      //newUser._id = users.currentItem._id;
+      
+      //newUser._id = ({ users }) => users.currentItem._id;
+      //console.log(newUser,'users');
       const data = yield call(update, newUser)
       if (data && data.success) {
-        yield put({
-          type: 'querySuccess',
-          payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current
+        yield put({ type: 'showLoading' })
+        const data = yield call(query, parse(payload))
+        if (data) {
+          yield put({
+            type: 'querySuccess',
+            payload: {
+              list: data.data,
+              pagination: data.page
             }
-          }
-        })
+          })
+        }
       }
     }
   },
@@ -106,6 +125,7 @@ export default {
       return { ...state, loading: true }
     },
     querySuccess (state, action) {
+
       const {list, pagination} = action.payload
       return { ...state,
         list,

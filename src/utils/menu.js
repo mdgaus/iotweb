@@ -10,6 +10,16 @@ module.exports = [
         icon: 'team',
         clickable: true
     }, {
+        key: 'regions',
+        name: 'Regions',
+        icon: 'team',
+        clickable: true
+    }, {
+        key: 'branch',
+        name: 'Branch',
+        icon: 'team',
+        clickable: true
+    }, {
         key: 'table',
         name: 'Table',
         icon: 'exception',

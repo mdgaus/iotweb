@@ -5,8 +5,7 @@ import {
   InputNumber,
   Radio,
   Modal,
-  LocaleProvider,
-  Select
+  LocaleProvider
 } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US';
 
@@ -20,7 +19,9 @@ const formItemLayout = {
     span: 14
   }
 }
-
+const displayNone = {
+  display: "none"
+}
 const modal = ({
   visible,
   type,
@@ -60,56 +61,58 @@ const modal = ({
     <LocaleProvider locale={enUS}>
       <Modal {...modalOpts}>
         <Form horizontal>
-          <FormItem {...formItemLayout} label="Zone Id">
-                    {getFieldDecorator('zoneId', {
-                        rules: [
-                            {
-                                required: true,
-                                message: 'Please select zone!'
-                                
-                            }
-                        ]
-                    })(
-                        <Select  placeholder="Please select zone">
-                            <Option value="sec 8">sec 8</Option>
-                            <Option value="sec 9">sec 9</Option>
-                            <Option value="sec 10">sec 10</Option>
-                        </Select>
-                    )}
-        </FormItem>
+
+          <FormItem style={displayNone} label='_id' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('_id', {
+              initialValue: item._id,
+             
+            })(<Input/>)}
+          </FormItem>
+          <FormItem label='Zone Id' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('zoneId', {
+              initialValue: item.zoneId,
+              rules: [
+                {
+                  required: true,
+                  message: 'Name Cannot be Empty'
+                }
+              ]
+            })(<Input/>)}
+          </FormItem>
           <FormItem label='Branch Name：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('branchName', {
               initialValue: item.branchName,
               rules: [
                 {
                   required: true,
-                  message: 'Name Cannot be Filled'
+                  message: 'User Name Cannot be Empty'
                 }
               ]
             })(<Input/>)}
           </FormItem>
-           <FormItem label='Address：' hasFeedback {...formItemLayout}>
+          <FormItem label='Address：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('Address', {
               initialValue: item.Address,
               rules: [
                 {
                   required: true,
-                  message: 'address Cannot be Filled'
+                  message: 'Address Cannot be Empty'
                 }
               ]
             })(<Input/>)}
           </FormItem>
-          <FormItem label='Pin code' hasFeedback {...formItemLayout}>
+          <FormItem label='Pin Code：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('pinCode', {
               initialValue: item.pinCode,
               rules: [
                 {
                   required: true,
-                  message: 'Pincode Cannot be Filled'
+                  message: 'Pin Code Cannot be Empty'
                 }
               ]
             })(<Input/>)}
           </FormItem>
+          
         </Form>
       </Modal>
     </LocaleProvider>

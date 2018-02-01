@@ -18,7 +18,7 @@ const search = ({
     keyword,
     size: 'large',
     select: true,
-    selectOptions: [{ value: 'name', name: 'Name' }, { value: 'address', name: 'Address' }],
+    selectOptions: [{ value: 'name', name: 'Name' }],
     selectProps: {
       defaultValue: field || 'name'
     },

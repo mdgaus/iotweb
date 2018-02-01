@@ -126,56 +126,30 @@ class list extends React.Component {
 
      const columns = [
     {
-      title: 'Avatar',
+      title: 'Sn No',
       dataIndex: 'avatar',
       key: 'avatar',
-      width: 64,
+      width: '10%',
       className: styles.avatar,
       render: (text) => <img width={30} src={text} />
     }, {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name'
+      title: 'Zone Name',
+      dataIndex: 'zoneName',
+      width: '10%',
+      key: 'zoneName'
     }, {
-      title: 'User Name',
-      dataIndex: 'nickName',
-      key: 'nickName'
-    }, {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-      render: (text) => <span>{text} Age</span>
-    }, {
-      title: 'Gender',
-      dataIndex: 'isMale',
-      key: 'isMale',
-      render: (text) => <span>{text
-            ? 'Male'
-            : 'Female'}</span>
-    }, {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone'
-    }, {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email'
-    }, {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address'
-    }, {
-      title: 'Crate Date',
-      dataIndex: 'createTime',
-      key: 'createTime'
-    }, {
+      title: 'Region Name',
+      dataIndex: 'regionId',
+      width: '10%',
+      key: 'regionId'
+    },  {
       title: 'Operation',
       key: 'operation',
-      width: 100,
+      width: '10%',
       render: (text, record) => {
          return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
            <Menu.Item key='1'>Edit</Menu.Item>
-           <Menu.Item key='2'>Delete</Menu.Item>
+           
          </Menu>}>
            <Button style={{ border: 'none' }}>
              <Icon style={{ marginRight: 2 }} type='bars' />
@@ -185,7 +159,7 @@ class list extends React.Component {
        }
     }
   ]
-   
+   //console.log(dataSource)
     return <div>
       <LocaleProvider locale={enUS}>
       <Table className={styles.table} bordered  columns={columns} dataSource={dataSource} loading={loading} onChange={::this.pageChange} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper}   scroll={{ x: this.state.width }} /></LocaleProvider>

@@ -10,9 +10,11 @@ app.model(require('./models/app'))
 app.model(require('./models/dashboard'))
 app.model(require('./models/users'))
 app.model(require('./models/region'))
+app.model(require('./models/regions'))
 app.model(require('./models/zone'))
 app.model(require('./models/branch'))
 app.model(require('./models/userType'))
+
 
 
 // 3. Router

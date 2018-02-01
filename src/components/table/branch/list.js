@@ -1,156 +1,180 @@
+import React from 'react'
+import {Table, Dropdown, Button, Menu, Icon, Modal,LocaleProvider} from 'antd'
+import {TweenOneGroup} from 'rc-tween-one'
+import styles from './list.less'
+const confirm = Modal.confirm
+import enUS from 'antd/lib/locale-provider/en_US';
 
-import React, {Component} from 'react';
-import superagent from 'superagent';
 
-const BASE_URL = 'http://139.59.95.113:8080/allBranch';
-export default class BranchList extends Component{
-  constructor(props) {
-    super(props);
-      this.state = {
-        isBranchData: [],
-        activePage:1,
-        totalItemsCount:0,
-        searchString:''
+class list extends React.Component {
+  constructor (props) {
+    super(props)
+    this.enterAnim = [
+      {
+        opacity: 0,
+        x: 30,
+        backgroundColor: '#fffeee',
+        duration: 0
+      }, {
+        height: 0,
+        duration: 200,
+        type: 'from',
+        delay: 250,
+        ease: 'easeOutQuad',
+        onComplete: this.onEnd
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 250,
+        ease: 'easeOutQuad'
+      }, {
+        delay: 1000,
+        backgroundColor: '#fff'
       }
+    ]
+    this.leaveAnim = [
+      {
+        duration: 250,
+        opacity: 0
+      }, {
+        height: 0,
+        duration: 200,
+        ease: 'easeOutQuad'
+      }
+    ]
+    const {current} = this.props.pagination
+    this.currentPage = current
+    this.newPage = current
+    this.state = {
+      width: 800
+    }
   }
+
+ /**
+   * Calculate & Update state of new dimensions
+   */
+  updateDimensions() {
+    if (window.innerWidth < 1000) {
+      this.setState({width: 850});
+    } else if (window.innerWidth > 1000) {
+      this.setState({width: 0});
+    } else {
+      let update_width = window.innerWidth - 100;
+      this.setState({width: update_width});
+    }
+  }
+
+  /**
+   * Add event listener
+   */
   componentDidMount() {
-    this.getRegionData().then((res)=>{
-      console.log("res", res)
-      this.setState({
-        isBranchData:res.body.data
-      })
-    }).catch((error)=>{
-      console.log(error)
-    });
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
   }
-  getRegionData = () => {
-    //try{
-        // let skip = this.state.activePage?(this.state.activePage-1)*10:this.state.activePage;
-        // let queryObj = {skip:skip,limit:10};
-        // console.log(queryObj)
-        // if(this.state.searchString){
-        //   queryObj.searchString = this.state.searchString
-        // }
-        
-        
-        
-          return superagent
-          .get(BASE_URL)
-          .query({})
-       
-        // SOCKET.emit('orders::find', queryObj, (error, response) => {
-        //     console.log(error, response)
-        //     if(!error && response.total){
-        //         this.setState({
-        //             isBranchData : response.data,
-        //             totalItemsCount:response.total
-        //         })
-        //     }else{
-        //       this.setState({
-        //         searchString:''
-        //       })
-        //     }
-        // });
-    // }catch(error){
-    //   alert("Check server error");
-    // }
+
+  /**
+   * Remove event listener
+   */
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
   }
-  // handlePageChange=(pageNumber)=> {
-  //   console.log(`active page is ${pageNumber}`);
-  //   this.setState({activePage: pageNumber});
-  //   this.getOrdersData()
 
-  // }
-  // handleSearchChange = (e) =>{
-  //   if (e.target.id === 'search') {
-  //     this.setState({
-  //       searchString:e.target.value
-  //     })
-  //     if(!e.target.value){
-  //       this.getOrdersData()
-  //     }
-  //    } 
+  getBodyWrapper = (body) => {
+    // Switch paging to remove animation
+    if (this.currentPage !== this.newPage) {
+      this.currentPage = this.newPage
+      return body
+    }
+    return (
+      <TweenOneGroup component='tbody' className={body.props.className} enter={this.enterAnim} leave={this.leaveAnim} appear={false}>
+        {body.props.children}
+      </TweenOneGroup>
+    )
+  }
 
-  // }
-  render(){
-    console.log(this.state.isBranchData)
-    return(
-        <div className="content-wrapper">
-
-            <section className="content-header">
-
-            <h1 className="float-left"> </h1>
-              <div className="import-tools-block">
-              
-               
-              </div>
-            </section>
-            <section className="content">
-              <div className="row">
-                <div className="col-xs-12">
-                  <div className="box">
-                    <div className="box-header">
-                      <div className="col-xs-8">
-                        <h3 className="box-title"></h3>
-                      </div>
-                      <div className="col-xs-4">
-                        <div className="col-xs-12">
-                          <div id="custom-search-input">
-                            <div className="input-group col-md-12">
-                              
-                              <span className="input-group-btn">
-                              
-                              </span>
-                              </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                    <div className="box-body">
-                      <table id="example2" className="table table-bordered table-hover">
-                        <thead>
-                          <tr>
-                          <th>SNo.</th>
-                            <th>Branch Name</th>
-                            <th>Zone Id</th>
-                            <th>Address</th>
-                            <th>Pincode Id</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.state.isBranchData.map((branch, index) => {
-                              return (
-                                <tr key={index} >
-                                  <td>{index+1}</td>
-                                  <td>{branch.branchName}</td>
-                                  <td>{branch.zoneId}</td>
-                                  <td>{branch.Address}</td>
-                                  <td>{branch.pinCode}</td>
-                                  <td>{branch.status}</td>
-                                  <td>
-                                   
-                                    <a  onClick={(e)=>this.deleteVehicle(order.orderId)} ><i className="fa fa-trash"></i></a>
-                                  </td>
-                                </tr>
-                              )})
-                        }
-                        </tbody>
-                      </table>
-                     
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-
-            </section>
-
-        </div>
-      )
+  handleMenuClick = (record, e) => {
+  const {onDeleteItem, onEditItem} = this.props
+  if (e.key === '1') {
+    onEditItem(record)
+  } else if (e.key === '2') {
+    confirm({
+      title: 'Are you sure you want to delete this record?',
+      onOk () {
+        onDeleteItem(record.id)
+      }
+    })
   }
 }
+
+  onEnd = (e) => {
+    e.target.style.height = 'auto'
+  }
+
+  async pageChange (pagination) {
+    await this.props.onPageChange(pagination)
+    this.newPage = pagination.current
+  }
+
+  render () {
+    const {
+      loading,
+      dataSource,
+      pagination,
+      onDeleteItem,
+      onEditItem
+    } = this.props
+
+     const columns = [
+    {
+      title: 'Sn No',
+      dataIndex: 'avatar',
+      key: 'avatar',
+      width: '10%',
+      className: styles.avatar,
+      render: (text) => <img width={30} src={text} />
+    }, {
+      title: 'Zone Name',
+      dataIndex: 'zoneId',
+      width: '10%',
+      key: 'zoneId'
+    }, {
+      title: 'Region Name',
+      dataIndex: 'regionId',
+      width: '10%',
+      key: 'regionId'
+    }, {
+      title: 'Branch Name',
+      dataIndex: 'branchName',
+      width: '10%',
+      key: 'branchName'
+    }, {
+      title: 'Address',
+      dataIndex: 'Address',
+      width: '10%',
+      key: 'Address'
+    },  {
+      title: 'Operation',
+      key: 'operation',
+      width: '10%',
+      render: (text, record) => {
+         return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
+           <Menu.Item key='1'>Edit</Menu.Item>
+           
+         </Menu>}>
+           <Button style={{ border: 'none' }}>
+             <Icon style={{ marginRight: 2 }} type='bars' />
+             <Icon type='down' />
+           </Button>
+         </Dropdown>)
+       }
+    }
+  ]
+   //console.log(dataSource)
+    return <div>
+      <LocaleProvider locale={enUS}>
+      <Table className={styles.table} bordered  columns={columns} dataSource={dataSource} loading={loading} onChange={::this.pageChange} pagination={pagination} simple rowKey={record => record.id} getBodyWrapper={this.getBodyWrapper}   scroll={{ x: this.state.width }} /></LocaleProvider>
+    </div>
+  }
+}
+
+export default list
