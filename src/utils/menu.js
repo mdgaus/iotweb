@@ -10,6 +10,17 @@ module.exports = [
         icon: 'team',
         clickable: true
     }, {
+        key: 'asset',
+        name: 'Assets',
+        icon: 'team',
+        clickable: false,
+        child: [
+            {
+                key: 'assets',
+                name: 'Assets'
+            }
+        ]
+    }, {
         key: 'regions',
         name: 'Regions',
         icon: 'team',
@@ -81,20 +92,13 @@ module.exports = [
         name: 'Region',
         icon: 'pushpin-o',
         clickable: true,
-       
+
     },
     {
         key: 'zone',
         name: 'Zone',
         icon: 'pushpin-o',
         clickable: true,
-       
-    },
-    {
-        key: 'branch',
-        name: 'Branch',
-        icon: 'pushpin-o',
-        clickable: true,
-       
+
     }
 ]

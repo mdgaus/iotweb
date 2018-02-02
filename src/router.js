@@ -31,6 +31,15 @@ export default function ({history, app}) {
                         })
                     }
                 },
+                {
+                    path: 'asset/assets',
+                    name: 'asset/assets',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/asset/assets'))
+                        })
+                    }
+                },
                  {
                     path: 'table/users',
                     name: 'table/users',
@@ -187,7 +196,7 @@ export default function ({history, app}) {
                         })
                     }
                 }
-                
+
             ]
         }
     ]

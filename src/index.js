@@ -14,8 +14,7 @@ app.model(require('./models/regions'))
 app.model(require('./models/zone'))
 app.model(require('./models/branch'))
 app.model(require('./models/userType'))
-
-
+app.model(require('./models/assets'))
 
 // 3. Router
 app.router(require('./router'))
