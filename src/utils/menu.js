@@ -18,6 +18,10 @@ module.exports = [
             {
                 key: 'assets',
                 name: 'Assets'
+            },
+            {
+                key: 'assets_type',
+                name: 'Assets Type'
             }
         ]
     }, {

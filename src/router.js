@@ -40,6 +40,15 @@ export default function ({history, app}) {
                         })
                     }
                 },
+                {
+                    path: 'asset/assets_type',
+                    name: 'asset/assets_type',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/asset/assets_type'))
+                        })
+                    }
+                },
                  {
                     path: 'table/users',
                     name: 'table/users',

@@ -15,6 +15,7 @@ app.model(require('./models/zone'))
 app.model(require('./models/branch'))
 app.model(require('./models/userType'))
 app.model(require('./models/assets'))
+app.model(require('./models/assets_type'))
 
 // 3. Router
 app.router(require('./router'))
