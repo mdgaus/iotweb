@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react'
 import {routerRedux} from 'dva/router'
 import {connect} from 'dva'
-import UserList from '../../components/table/branch/list'
-import UserSearch from '../../components/table/branch/search'
-import UserModal from '../../components/table/branch/modal'
+import UserList from '../../components/branch/list'
+import UserSearch from '../../components/branch/search'
+import UserModal from '../../components/branch/modal'
 import {Row, Col} from 'antd';
 
 function Branch({location, dispatch, branch}) {
@@ -85,7 +85,7 @@ function Branch({location, dispatch, branch}) {
   }
 
   const UserModalGen = () => <UserModal {...userModalProps}/>
-  
+
 
   return (
     <div className='content-inner'>

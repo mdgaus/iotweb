@@ -67,26 +67,8 @@ export default function ({history, app}) {
                         })
                     }
                 }, {
-                    path: 'branch',
-                    name: 'branch',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/branch'))
-                        })
-                    }
-                },
-                 {
                     path: 'table/regions',
                     name: 'table/regions',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/regions'))
-                        })
-                    }
-                },
-                 {
-                    path: 'table/branch',
-                    name: 'table/branch',
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/table/regions'))
@@ -142,7 +124,7 @@ export default function ({history, app}) {
                     name: 'branch',
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
-                            cb(null, require('./routes/branch'))
+                            cb(null, require('./routes/table/branch'))
                         })
                     }
                 },
