@@ -27,6 +27,7 @@ const modal = ({
   visible,
   type,
   item = {},
+  dropDownData,
   onOk,
   onCancel,
   form: {
@@ -88,9 +89,10 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select Asset Type" >
-                  <Option value="Smart Cooler" >Smart Cooler</Option>
-                  <Option value="Truck" >Truck</Option>
-                  <Option value="Tracker" >Tracker</Option>
+                 {
+                  dropDownData.map((item,index)=>{
+                  return <Select.Option value={item.assetTypeId} key = {index} >{item.assetTypeName}</Select.Option>
+                })}
                 </Select>
              )}
           </FormItem>
