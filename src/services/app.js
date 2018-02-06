@@ -1,7 +1,7 @@
 import { request } from '../utils'
 
 export async function login (params) {
-  return request('/api/login', {
+  return request('http://139.59.95.113:8080/login', {
     method: 'post',
     data: params
   })

@@ -5,6 +5,11 @@ module.exports = [
         icon: 'laptop',
         clickable: true
     }, {
+        key: 'login',
+        name: 'Login',
+        icon: 'team',
+        clickable: true
+    }, {
         key: 'users_list',
         name: 'Users',
         icon: 'team',
