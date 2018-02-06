@@ -47,13 +47,6 @@ module.exports = [
         ]
     },
     {
-        key: 'region',
-        name: 'Region',
-        icon: 'pushpin-o',
-        clickable: true,
-
-    },
-    {
         key: 'zone',
         name: 'Zone',
         icon: 'pushpin-o',

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Form, Button, Row, Col } from 'antd'
-import SearchGroup from '../../ui/search'
+import SearchGroup from '../ui/search'
 
 const search = ({
   field,

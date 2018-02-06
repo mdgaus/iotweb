@@ -67,14 +67,6 @@ export default function ({history, app}) {
                         })
                     }
                 }, {
-                    path: 'table/regions',
-                    name: 'table/regions',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/regions'))
-                        })
-                    }
-                }, {
                     path: 'pages/blank',
                     name: 'pages/blank',
                     getComponent(nextState, cb) {
@@ -98,15 +90,6 @@ export default function ({history, app}) {
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/pages/signup'))
-                        })
-                    }
-                },
-                {
-                    path: 'region',
-                    name: 'region',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/region/add-region'))
                         })
                     }
                 },

@@ -8,7 +8,7 @@ const app = dva()
 
 app.model(require('./models/app'))
 app.model(require('./models/dashboard'))
-app.model(require('./models/region'))
+// app.model(require('./models/regions'))
 app.model(require('./models/regions'))
 app.model(require('./models/zone'))
 app.model(require('./models/branch'))
