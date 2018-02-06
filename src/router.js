@@ -92,39 +92,6 @@ export default function ({history, app}) {
                         })
                     }
                 }, {
-                    path: 'table/advancedTable',
-                    name: 'table/advancedTable',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/advancedTable'))
-                        })
-                    }
-                }, {
-                    path: 'table/basic',
-                    name: 'table/basic',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/basic'))
-                        })
-                    }
-                }, {
-                    path: 'table/ajaxTable',
-                    name: 'table/ajaxTable',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/ajaxTable'))
-                        })
-                    }
-                }, {
-                    path: 'table/table-playground',
-                    name: 'table/table-playground',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/table-playground'))
-                        })
-                    }
-                },
-                 {
                     path: 'pages/blank',
                     name: 'pages/blank',
                     getComponent(nextState, cb) {
