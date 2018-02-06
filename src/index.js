@@ -8,14 +8,14 @@ const app = dva()
 
 app.model(require('./models/app'))
 app.model(require('./models/dashboard'))
-app.model(require('./models/users'))
 app.model(require('./models/region'))
 app.model(require('./models/regions'))
 app.model(require('./models/zone'))
 app.model(require('./models/branch'))
-app.model(require('./models/userType'))
 app.model(require('./models/assets'))
 app.model(require('./models/assets_type'))
+app.model(require('./models/users'))
+// app.model(require('./models/user_type'))
 
 // 3. Router
 app.router(require('./router'))

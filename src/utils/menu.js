@@ -5,11 +5,6 @@ module.exports = [
         icon: 'laptop',
         clickable: true
     }, {
-        key: 'users_list',
-        name: 'Users',
-        icon: 'team',
-        clickable: true
-    }, {
         key: 'asset',
         name: 'Assets',
         icon: 'team',
@@ -34,19 +29,20 @@ module.exports = [
         name: 'Branch',
         icon: 'team',
         clickable: true
-    }, 
+    },
     {
         key: 'user',
-        name: 'User',
+        name: 'Users',
         icon: 'team',
         clickable: false,
         child: [
             {
-                key: 'user',
-                name: 'user'
-            }, {
-                key: 'userType',
-                name: 'userType'
+                key: 'users',
+                name: 'Users'
+            },
+            {
+                key: 'user_type',
+                name: 'User Type'
             }
         ]
     },

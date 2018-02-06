@@ -1,13 +1,12 @@
 import React, {PropTypes} from 'react'
 import {routerRedux} from 'dva/router'
 import {connect} from 'dva'
-import UserList from '../components/table/userType/list'
-import UserSearch from '../components/table/userType/search'
-import UserModal from '../components/table/userType/modal'
+import UserList from '../../components/user/list'
+import UserSearch from '../../components/user/search'
+import UserModal from '../../components/user/modal'
 import {Row, Col} from 'antd';
 
-function UserType({location, dispatch, userType}) {
-
+function Users({location, dispatch, users}) {
   const {
     loading,
     list,
@@ -15,7 +14,7 @@ function UserType({location, dispatch, userType}) {
     currentItem,
     modalVisible,
     modalType
-  } = userType
+  } = users
   const {field, keyword} = location.query
 
   const userModalProps = {
@@ -25,11 +24,10 @@ function UserType({location, dispatch, userType}) {
     type: modalType,
     visible: modalVisible,
     onOk(data) {
-      dispatch({type: `userType/${modalType}`, payload: data})
+      dispatch({type: `users/${modalType}`, payload: data})
     },
     onCancel() {
-      dispatch({type: 'userType/hideModal'})
-
+      dispatch({type: 'users/hideModal'})
     }
   }
 
@@ -68,18 +66,17 @@ function UserType({location, dispatch, userType}) {
     onSearch(fieldsValue) {
       fieldsValue.keyword.length
         ? dispatch(routerRedux.push({
-          pathname: '/table/users',
+          pathname: '/user/users',
           query: {
             field: fieldsValue.field,
             keyword: fieldsValue.keyword
           }
         }))
-        : dispatch(routerRedux.push({pathname: '/table/users'}))
+        : dispatch(routerRedux.push({pathname: '/user/users'}))
     },
     onAdd() {
-
       dispatch({
-        type: 'userType/showModal',
+        type: 'users/showModal',
         payload: {
           modalType: 'create'
         }
@@ -88,14 +85,14 @@ function UserType({location, dispatch, userType}) {
   }
 
   const UserModalGen = () => <UserModal {...userModalProps}/>
- // console.log(userListProps,'dddd')
+
 
   return (
     <div className='content-inner'>
       <Row>
         <Col xs={24} md={24} lg={24}>
           <UserSearch {...userSearchProps}/>
-          <UserList  />
+          <UserList {...userListProps}/>
           <UserModalGen/>
         </Col>
 
@@ -105,14 +102,14 @@ function UserType({location, dispatch, userType}) {
   )
 }
 
-UserType.propTypes = {
-  userType: PropTypes.object,
+Users.propTypes = {
+  users: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func
 }
 
-function mapStateToProps({userType}) {
-  return {userType}
+function mapStateToProps({users}) {
+  return {users}
 }
 
-export default connect(mapStateToProps)(UserType)
+export default connect(mapStateToProps)(Users)

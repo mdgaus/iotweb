@@ -19,14 +19,14 @@ export async function create (params) {
 }
 
 export async function remove (params) {
-  return request('/api/users', {
+  return request('http://139.59.95.113:8080/deleteUsertype', {
     method: 'delete',
     data: params
   })
 }
 
 export async function update (params) {
-  return request('/api/users', {
+  return request('http://139.59.95.113:8080/editUsertype', {
     method: 'put',
     data: params
   })

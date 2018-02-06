@@ -23,15 +23,6 @@ export default function ({history, app}) {
                     }
                 },
                 {
-                    path: 'users_list',
-                    name: 'users_list',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/users_list'))
-                        })
-                    }
-                },
-                {
                     path: 'asset/assets',
                     name: 'asset/assets',
                     getComponent(nextState, cb) {
@@ -49,6 +40,24 @@ export default function ({history, app}) {
                         })
                     }
                 },
+                {
+                    path: 'user/users',
+                    name: 'user/users',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/user/users'))
+                        })
+                    }
+                },
+                // {
+                //     path: 'user/user_type',
+                //     name: 'user/user_type',
+                //     getComponent(nextState, cb) {
+                //         require.ensure([], require => {
+                //             cb(null, require('./routes/user/user_type'))
+                //         })
+                //     }
+                // },
                  {
                     path: 'table/users',
                     name: 'table/users',
@@ -142,15 +151,6 @@ export default function ({history, app}) {
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/users'))
-                        })
-                    }
-                },
-                {
-                    path: 'user/userType',
-                    name: 'user/userType',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/userType'))
                         })
                     }
                 },
