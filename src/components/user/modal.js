@@ -27,6 +27,7 @@ const modal = ({
   visible,
   type,
   item = {},
+  dropDownData,
   onOk,
   onCancel,
   form: {
@@ -115,9 +116,13 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select User Type" >
-                  <Option value="Admin">Admin</Option>
-                  <Option value="Manager" >Manager</Option>
-                  <Option value="User" >User</Option>
+                {
+                  dropDownData.map((item, index) => {
+                    return <Select.Option value={item.userType} key={item._id}>
+                        {item.userType}
+                      </Select.Option>
+                  })
+                }
                 </Select>
              )}
           </FormItem>

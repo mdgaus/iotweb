@@ -4,7 +4,6 @@ const apiFunc = {};
 const BASE_URL = 'http://139.59.95.113:8080';
 
 apiFunc.getAssetTypeList = () => {
-  console.log("aa gaya assets type dd")
      return superagent
        .get(BASE_URL+'/allAssetType')
        .query({clientId: 1})
@@ -20,4 +19,10 @@ apiFunc.getZoneList = () =>{
          .get(BASE_URL+'/allZone')
          .query({})
 }
+apiFunc.getUserTypeList = () => {
+     return superagent
+       .get(BASE_URL+'/allUserType')
+       .query({clientId: 1})
+}
+
 export default apiFunc;

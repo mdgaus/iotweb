@@ -4,11 +4,13 @@ import {connect} from 'dva'
 import UserList from '../../components/user/list'
 import UserSearch from '../../components/user/search'
 import UserModal from '../../components/user/modal'
+import Utils from '../../CommonMethods/Utils'
 import {Row, Col} from 'antd';
 
 function Users({location, dispatch, users}) {
   const {
     loading,
+    dropDownData,
     list,
     pagination,
     currentItem,
@@ -17,11 +19,18 @@ function Users({location, dispatch, users}) {
   } = users
   const {field, keyword} = location.query
 
+  async function  userType(){
+    var a = await Utils.getUserTypeList()
+    users.dropDownData = a.body.data;
+  }
+  userType();
+
   const userModalProps = {
     item: modalType === 'create'
       ? {}
       : currentItem,
     type: modalType,
+    dropDownData: dropDownData,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `users/${modalType}`, payload: data})
