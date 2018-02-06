@@ -58,15 +58,7 @@ export default function ({history, app}) {
                 //         })
                 //     }
                 // },
-                 {
-                    path: 'table/users',
-                    name: 'table/users',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/users'))
-                        })
-                    }
-                }, {
+               {
                     path: 'regions',
                     name: 'regions',
                     getComponent(nextState, cb) {
@@ -142,15 +134,6 @@ export default function ({history, app}) {
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/zone'))
-                        })
-                    }
-                },
-                {
-                    path: 'users',
-                    name: 'users',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/users'))
                         })
                     }
                 },
