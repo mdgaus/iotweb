@@ -1,16 +1,13 @@
 import { request } from '../utils'
 
 export async function query (params) {
-  alert("get all region")
-  return request('http://139.59.95.113:8080/allUserType', {
+  return request('http://139.59.95.113:8080/allUserType?clientId=1', {
     method: 'get',
     data: params
   })
 }
 
 export async function create (params) {
-  //alert("region service")
-  //delete params.key;
   console.log("params = ",params)
   return request('http://139.59.95.113:8080/addUserType', {
     method: 'post',
@@ -20,14 +17,14 @@ export async function create (params) {
 
 export async function remove (params) {
   return request('http://139.59.95.113:8080/deleteUsertype', {
-    method: 'delete',
+    method: 'post',
     data: params
   })
 }
 
 export async function update (params) {
   return request('http://139.59.95.113:8080/editUsertype', {
-    method: 'put',
+    method: 'post',
     data: params
   })
 }

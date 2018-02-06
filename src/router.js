@@ -49,15 +49,15 @@ export default function ({history, app}) {
                         })
                     }
                 },
-                // {
-                //     path: 'user/user_type',
-                //     name: 'user/user_type',
-                //     getComponent(nextState, cb) {
-                //         require.ensure([], require => {
-                //             cb(null, require('./routes/user/user_type'))
-                //         })
-                //     }
-                // },
+                {
+                    path: 'user/user_type',
+                    name: 'user/user_type',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/user/user_type'))
+                        })
+                    }
+                },
                {
                     path: 'regions',
                     name: 'regions',

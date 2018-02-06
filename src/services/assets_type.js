@@ -16,7 +16,7 @@ export async function create (params) {
 
 export async function remove (params) {
   return request('http://139.59.95.113:8080/deleteAssetType', {
-    method: 'delete',
+    method: 'post',
     data: params
   })
 }
