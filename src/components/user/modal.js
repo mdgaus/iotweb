@@ -27,6 +27,7 @@ const modal = ({
   visible,
   type,
   item = {},
+  dropDownData,
   onOk,
   onCancel,
   form: {
@@ -69,7 +70,7 @@ const modal = ({
           </FormItem>
           <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
             {getFieldDecorator('clientId', {
-              initialValue: item.clientId,
+              initialValue: 131,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Email Id' hasFeedback {...formItemLayout}>
@@ -106,8 +107,8 @@ const modal = ({
             })(<Input/>)}
           </FormItem>
           <FormItem label='User Type' hasFeedback {...formItemLayout}>
-             {getFieldDecorator('userType', {
-               initialValue: item.userType,
+             {getFieldDecorator('userTypeId', {
+               initialValue: item.userTypeId,
                rules: [
                    {
                        required: true,
@@ -115,9 +116,28 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select User Type" >
-                  <Option value="Admin">Admin</Option>
-                  <Option value="Manager" >Manager</Option>
-                  <Option value="User" >User</Option>
+                {
+                  dropDownData.map((item, index) => {
+                    return <Select.Option value={item.userTypeId} key={item._id}>
+                        {item.userType}
+                      </Select.Option>
+                  })
+                }
+                </Select>
+             )}
+          </FormItem>
+          <FormItem label="Status" {...formItemLayout}>
+             {getFieldDecorator('status', {
+               initialValue: item.status,
+               rules: [
+                   {
+                       required: true,
+                       message: 'Please select status!'
+                   }
+               ]
+             })(<Select  placeholder="Select Status" >
+                  <Select.Option value="ACTIVE" >Active</Select.Option>
+                  <Select.Option value="INACTIVE" >Inactive</Select.Option>
                 </Select>
              )}
           </FormItem>
