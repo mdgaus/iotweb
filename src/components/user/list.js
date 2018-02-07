@@ -146,12 +146,17 @@ class list extends React.Component {
       width: '10%',
       key: 'userType'
     }, {
+      title: 'Status',
+      dataIndex: 'status',
+      width: '10%',
+      key: 'status'
+    }, {
       title: 'Operation',
       key: 'operation',
       width: '10%',
       render: (text, record) => {
          return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
-           <Menu.Item key='2'>Delete</Menu.Item>
+           <Menu.Item key='1'>Edit</Menu.Item>
          </Menu>}>
            <Button style={{ border: 'none' }}>
              <Icon style={{ marginRight: 2 }} type='bars' />

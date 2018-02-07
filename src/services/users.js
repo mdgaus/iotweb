@@ -21,10 +21,10 @@ export async function remove (params) {
   })
 }
 
-// export async function update (params) {
-//
-//   return request('http://139.59.95.113:8080/editZone', {
-//     method: 'post',
-//     data: params
-//   })
-// }
+export async function update (params) {
+
+  return request('http://139.59.95.113:8080/editUser', {
+    method: 'post',
+    data: params
+  })
+}
