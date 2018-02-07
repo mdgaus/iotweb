@@ -41,6 +41,15 @@ export default function ({history, app}) {
                     }
                 },
                 {
+                    path: 'device',
+                    name: 'device',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/table/device'))
+                        })
+                    }
+                },
+                {
                     path: 'user/users',
                     name: 'user/users',
                     getComponent(nextState, cb) {

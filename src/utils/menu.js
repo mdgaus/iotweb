@@ -25,6 +25,11 @@ module.exports = [
         icon: 'team',
         clickable: true
     }, {
+        key: 'device',
+        name: 'Devices',
+        icon: 'pushpin-o',
+        clickable: true
+    }, {
         key: 'branch',
         name: 'Branch',
         icon: 'team',
