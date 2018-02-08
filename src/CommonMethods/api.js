@@ -2,6 +2,7 @@ import superagent from 'superagent';
 
 const apiFunc = {};
 const BASE_URL = 'http://139.59.95.113:8080';
+const CLIENT_ID = 131;
 
 apiFunc.getAssetTypeList = () => {
      return superagent
@@ -25,4 +26,8 @@ apiFunc.getUserTypeList = () => {
        .query({clientId: 131})
 }
 
-export default apiFunc;
+export default {
+  apiFunc,
+  BASE_URL,
+  CLIENT_ID
+};

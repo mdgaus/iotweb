@@ -1,21 +1,22 @@
 import { request } from '../utils'
+import {BASE_URL, CLIENT_ID} from '../CommonMethods/api'
 
 export async function query (params) {
-  return request('http://139.59.95.113:8080/allAssetType', {
+  return request(BASE_URL+'/allAssetType?clientId='+CLIENT_ID, {
     method: 'get',
     data: params
   })
 }
 
 export async function create (params) {
-  return request('http://139.59.95.113:8080/addAssetType', {
+  return request(BASE_URL+'/addAssetType', {
     method: 'post',
     data: params
   })
 }
 
 export async function remove (params) {
-  return request('http://139.59.95.113:8080/deleteAssetType', {
+  return request(BASE_URL+'/deleteAssetType', {
     method: 'post',
     data: params
   })
@@ -23,7 +24,7 @@ export async function remove (params) {
 
 export async function update (params) {
   console.log("response", params)
-  return request('http://139.59.95.113:8080/editAsset', {
+  return request(BASE_URL+'/editAsset', {
     method: 'post',
     data: params
   })

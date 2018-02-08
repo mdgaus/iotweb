@@ -4,7 +4,7 @@ import {connect} from 'dva'
 import UserList from '../../components/assets/list'
 import UserSearch from '../../components/assets/search'
 import UserModal from '../../components/assets/modal'
-import Utils from '../../CommonMethods/Utils'
+import {apiFunc, BASE_URL, CLIENT_ID} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
 
 function Assets({location, dispatch, assets}) {
@@ -21,7 +21,7 @@ function Assets({location, dispatch, assets}) {
 
   async function  assetType(){
    console.log(22222)
-    var a = await Utils.getAssetTypeList()
+    var a = await apiFunc.getAssetTypeList()
     assets.dropDownData = a.body.data;
   }
   assetType();

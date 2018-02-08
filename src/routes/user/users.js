@@ -4,7 +4,7 @@ import {connect} from 'dva'
 import UserList from '../../components/user/list'
 import UserSearch from '../../components/user/search'
 import UserModal from '../../components/user/modal'
-import Utils from '../../CommonMethods/Utils'
+import {apiFunc} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
 
 function Users({location, dispatch, users}) {
@@ -20,7 +20,7 @@ function Users({location, dispatch, users}) {
   const {field, keyword} = location.query
 
   async function  userType(){
-    var a = await Utils.getUserTypeList()
+    var a = await apiFunc.getUserTypeList()
     users.dropDownData = a.body.data;
   }
   userType();
