@@ -126,25 +126,18 @@ class list extends React.Component {
 
      const columns = [
     {
-      title: 'Sn No',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: '10%',
-      className: styles.avatar,
-      render: (text) => <img width={30} src={text} />
-    }, {
       title: 'Region Name',
       dataIndex: 'regionName',
       width: '10%',
       key: 'regionId'
-    },  {
+    }, {
       title: 'Operation',
       key: 'operation',
       width: '10%',
       render: (text, record) => {
          return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
            <Menu.Item key='1'>Edit</Menu.Item>
-           
+
          </Menu>}>
            <Button style={{ border: 'none' }}>
              <Icon style={{ marginRight: 2 }} type='bars' />
