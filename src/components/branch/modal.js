@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import {
   Form,
   Input,
+  Select,
   InputNumber,
   Radio,
   Modal,
@@ -27,6 +28,8 @@ const modal = ({
   visible,
   type,
   item = {},
+  regionDropDown,
+  zoneDropDown,
   onOk,
   onCancel,
   form: {
@@ -50,7 +53,7 @@ const modal = ({
 
   const modalOpts = {
     title: `${type === 'create'
-      ? 'Create New User'
+      ? 'Add New Branch'
       : 'Edit User'}`,
     visible,
     onOk: handleOk,
@@ -72,16 +75,39 @@ const modal = ({
               initialValue: CLIENT_ID,
             })(<Input/>)}
           </FormItem>
-          <FormItem label='Zone Id' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('zoneId', {
-              initialValue: item.zoneId,
-              rules: [
-                {
-                  required: true,
-                  message: 'Name Cannot be Empty'
-                }
-              ]
-            })(<Input />)}
+          <FormItem label='Region' hasFeedback {...formItemLayout}>
+             {getFieldDecorator('regionId', {
+               initialValue: item.regionId,
+               rules: [
+                   {
+                       required: true,
+                       message: 'Please select Region'
+                   }
+               ]
+             })(<Select  placeholder="Select Region" >
+                 {
+                  regionDropDown.map((item,index)=>{
+                  return <Select.Option value={item.regionId} key = {index} >{item.regionName}</Select.Option>
+                })}
+                </Select>
+             )}
+          </FormItem>
+          <FormItem label='Zone' hasFeedback {...formItemLayout}>
+             {getFieldDecorator('zoneId', {
+               initialValue: item.zoneId,
+               rules: [
+                   {
+                       required: true,
+                       message: 'Please select Zone'
+                   }
+               ]
+             })(<Select  placeholder="Select Zone" >
+                 {
+                  zoneDropDown.map((item,index)=>{
+                  return <Select.Option value={item.zoneId} key = {index} >{item.zoneName}</Select.Option>
+                })}
+                </Select>
+             )}
           </FormItem>
           <FormItem label='Branch Name：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('branchName', {
@@ -89,10 +115,10 @@ const modal = ({
               rules: [
                 {
                   required: true,
-                  message: 'User Name Cannot be Empty'
+                  message: 'Branch Name Can not be Empty'
                 }
               ]
-            })(<Input/>)}
+            })(<Input placeholder="Branch Name" />)}
           </FormItem>
           <FormItem label='Address：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('Address', {
@@ -103,9 +129,9 @@ const modal = ({
                   message: 'Address Cannot be Empty'
                 }
               ]
-            })(<Input/>)}
+            })(<Input placeholder="Address" />)}
           </FormItem>
-          <FormItem label='Pin Code：' hasFeedback {...formItemLayout}>
+          <FormItem label='Pin Code:' hasFeedback {...formItemLayout}>
             {getFieldDecorator('pinCode', {
               initialValue: item.pinCode,
               rules: [
@@ -114,9 +140,23 @@ const modal = ({
                   message: 'Pin Code Cannot be Empty'
                 }
               ]
-            })(<Input/>)}
+            })(<Input placeholder="Pin Code" />)}
           </FormItem>
-
+          <FormItem label="Status" {...formItemLayout}>
+             {getFieldDecorator('status', {
+               initialValue: item.status,
+               rules: [
+                   {
+                       required: true,
+                       message: 'Please select status!'
+                   }
+               ]
+             })(<Select  placeholder="Select Status" >
+                  <Option value="ACTIVE" >Active</Option>
+                  <Option value="INACTIVE" >Inactive</Option>
+                </Select>
+             )}
+          </FormItem>
         </Form>
       </Modal>
     </LocaleProvider>

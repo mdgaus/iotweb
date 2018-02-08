@@ -7,6 +7,8 @@ export default {
 
   state: {
     list: [],
+    regionDropDown: [],
+    zoneDropDown: [],
     loading: false,
     currentItem: {},
     modalVisible: false,

@@ -44,7 +44,7 @@ export default {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data,
+            list: data.data,
             pagination: data.page
           }
 
@@ -83,7 +83,7 @@ export default {
           yield put({
             type: 'querySuccess',
             payload: {
-              list: data,
+              list: data.data,
               pagination: data.page
             }
 
@@ -106,7 +106,7 @@ export default {
           yield put({
             type: 'querySuccess',
             payload: {
-              list: data,
+              list: data.data,
               pagination: data.page
             }
           })

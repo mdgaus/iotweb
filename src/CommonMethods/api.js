@@ -10,15 +10,15 @@ apiFunc.getAssetTypeList = () => {
        .query({clientId: 131})
 }
 apiFunc.getRegionList = () =>{
-    console.log("aa gaya mai")
+    console.log("aa gaya mai 123")
        return superagent
          .get(BASE_URL+'/allRegion')
-         .query({})
+         .query({clientId: 131})
 }
 apiFunc.getZoneList = () =>{
     return superagent
          .get(BASE_URL+'/allZone')
-         .query({})
+         .query({clientId: 131})
 }
 apiFunc.getUserTypeList = () => {
      return superagent

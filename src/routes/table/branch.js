@@ -4,11 +4,14 @@ import {connect} from 'dva'
 import UserList from '../../components/branch/list'
 import UserSearch from '../../components/branch/search'
 import UserModal from '../../components/branch/modal'
+import {apiFunc, BASE_URL, CLIENT_ID} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
 
 function Branch({location, dispatch, branch}) {
   const {
     loading,
+    regionDropDown,
+    zoneDropDown,
     list,
     pagination,
     currentItem,
@@ -17,11 +20,25 @@ function Branch({location, dispatch, branch}) {
   } = branch
   const {field, keyword} = location.query
 
+  async function  getRegion(){
+    var a = await apiFunc.getRegionList()
+    branch.regionDropDown = a.body.data;
+  }
+  getRegion();
+
+  async function  getZone(){
+    var a = await apiFunc.getZoneList()
+    branch.zoneDropDown = a.body.data;
+  }
+  getZone();
+
   const userModalProps = {
     item: modalType === 'create'
       ? {}
       : currentItem,
     type: modalType,
+    regionDropDown: regionDropDown,
+    zoneDropDown: zoneDropDown,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `branch/${modalType}`, payload: data})

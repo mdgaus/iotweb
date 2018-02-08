@@ -125,33 +125,37 @@ class list extends React.Component {
     } = this.props
 
      const columns = [
+     {
+       title: 'Branch Name',
+       dataIndex: 'branchName',
+       width: '10%',
+       key: 'branchName'
+     },
     {
-      title: 'Sn No',
-      dataIndex: 'avatar',
-      key: 'avatar',
-      width: '10%',
-      className: styles.avatar,
-      render: (text) => <img width={30} src={text} />
-    }, {
       title: 'Zone Name',
-      dataIndex: 'zoneId',
+      dataIndex: 'zoneName',
       width: '10%',
-      key: 'zoneId'
+      key: 'zoneName'
     }, {
       title: 'Region Name',
-      dataIndex: 'regionId',
+      dataIndex: 'regionName',
       width: '10%',
-      key: 'regionId'
-    }, {
-      title: 'Branch Name',
-      dataIndex: 'branchName',
-      width: '10%',
-      key: 'branchName'
+      key: 'regionName'
     }, {
       title: 'Address',
       dataIndex: 'Address',
       width: '10%',
       key: 'Address'
+    }, {
+      title: 'Pin Code',
+      dataIndex: 'pinCode',
+      width: '10%',
+      key: 'pinCode'
+    }, {
+      title: 'Status',
+      dataIndex: 'status',
+      width: '10%',
+      key: 'status'
     },  {
       title: 'Operation',
       key: 'operation',
@@ -159,7 +163,7 @@ class list extends React.Component {
       render: (text, record) => {
          return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
            <Menu.Item key='1'>Edit</Menu.Item>
-           
+
          </Menu>}>
            <Button style={{ border: 'none' }}>
              <Icon style={{ marginRight: 2 }} type='bars' />

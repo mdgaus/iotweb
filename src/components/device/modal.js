@@ -9,6 +9,7 @@ import {
   LocaleProvider
 } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US';
+import {CLIENT_ID} from '../../CommonMethods/api';
 
 const FormItem = Form.Item
 
@@ -69,7 +70,7 @@ const modal = ({
           </FormItem>
           <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
             {getFieldDecorator('clientId', {
-              initialValue: item.clientId,
+              initialValue: CLIENT_ID,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Serial No.' hasFeedback {...formItemLayout}>
