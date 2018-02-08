@@ -50,7 +50,7 @@ const modal = ({
 
   const modalOpts = {
     title: `${type === 'create'
-      ? 'Create New User'
+      ? 'Add New Region'
       : 'Edit User'}`,
     visible,
     onOk: handleOk,

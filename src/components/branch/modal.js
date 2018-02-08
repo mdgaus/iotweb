@@ -8,6 +8,7 @@ import {
   LocaleProvider
 } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US';
+import {CLIENT_ID} from '../../CommonMethods/api'
 
 const FormItem = Form.Item
 
@@ -61,11 +62,14 @@ const modal = ({
     <LocaleProvider locale={enUS}>
       <Modal {...modalOpts}>
         <Form horizontal>
-
           <FormItem style={displayNone} label='_id' hasFeedback {...formItemLayout}>
             {getFieldDecorator('_id', {
               initialValue: item._id,
-             
+            })(<Input/>)}
+          </FormItem>
+          <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('clientId', {
+              initialValue: CLIENT_ID,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Zone Id' hasFeedback {...formItemLayout}>
@@ -77,7 +81,7 @@ const modal = ({
                   message: 'Name Cannot be Empty'
                 }
               ]
-            })(<Input/>)}
+            })(<Input />)}
           </FormItem>
           <FormItem label='Branch Name：' hasFeedback {...formItemLayout}>
             {getFieldDecorator('branchName', {
@@ -112,7 +116,7 @@ const modal = ({
               ]
             })(<Input/>)}
           </FormItem>
-          
+
         </Form>
       </Modal>
     </LocaleProvider>
