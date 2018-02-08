@@ -11,6 +11,7 @@ function Assets({location, dispatch, assets}) {
   const {
     loading,
     dropDownData,
+    branchDropDown,
     list,
     pagination,
     currentItem,
@@ -26,12 +27,19 @@ function Assets({location, dispatch, assets}) {
   }
   assetType();
 
+  async function  getBranch(){
+    var a = await apiFunc.getBranchList()
+    assets.branchDropDown = a.body.data;
+  }
+  getBranch();
+
   const userModalProps = {
     item: modalType === 'create'
       ? {}
       : currentItem,
     type: modalType,
     dropDownData: dropDownData,
+    branchDropDown: branchDropDown,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `assets/${modalType}`, payload: data})

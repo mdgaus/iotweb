@@ -20,6 +20,11 @@ apiFunc.getZoneList = () =>{
          .get(BASE_URL+'/allZone')
          .query({clientId: 131})
 }
+apiFunc.getBranchList = () =>{
+    return superagent
+         .get(BASE_URL+'/allBranch')
+         .query({clientId: 131})
+}
 apiFunc.getUserTypeList = () => {
      return superagent
        .get(BASE_URL+'/allUserType')

@@ -8,6 +8,7 @@ export default {
   state: {
     list: [],
     dropDownData: [],
+    branchDropDown: [],
     loading: false,
     currentItem: {},
     modalVisible: false,
@@ -75,17 +76,18 @@ export default {
       yield put({ type: 'showLoading' })
       // console.log('====',payload)
       const data = yield call(create, payload)
+      console.log("data in add",data)
       const data2 = yield call(query, parse(payload))
       if (data && data.success) {
         //console.log('====',data2)
         yield put({ type: 'showLoading' })
         const data = yield call(query, parse(payload))
         if (data) {
-
+          console.log("data in add",data2)
           yield put({
             type: 'querySuccess',
             payload: {
-              list: data.data,
+              list: data2.data,
               pagination: data.page
             }
 
