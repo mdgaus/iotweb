@@ -126,7 +126,7 @@ class list extends React.Component {
 
      const columns = [
     {
-      title: 'Asset Type',
+      title: 'Asset Type Id',
       dataIndex: 'assetTypeId',
       width: '10%',
       key: 'assetTypeId'
