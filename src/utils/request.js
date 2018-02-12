@@ -13,14 +13,14 @@ export default function request(url, options) {
       format: 'json'
     })
   } else {
-    console.log(url,options)
+    console.log(url,options,"mydata")
     return Ajax.ajax({
       url: url,
       method: options.method || 'get',
       data: options.data || {},
       dataType: 'json'
     }).done((data) => {
-       console.log(url,"dataaaaaaa",data);
+       console.log(url,"data",data);
       return data
     })
   }

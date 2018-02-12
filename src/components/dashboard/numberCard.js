@@ -9,11 +9,11 @@ function NumberCard (props) {
     <Card className={styles.numberCard} bordered={false} bodyStyle={{padding: 0}}>
       <Icon className={styles.iconWarp} style={{ color }} type={icon} />
       <div className={styles.content}>
-        <p className={styles.title}>{title || 'No Title'}</p>
+        <p className={styles.title}>{props.title||'No Title'}</p>
         <p className={styles.number}>
           <CountUp
             start={0}
-            end={number}
+            end={props.user}
             duration={2.75}
             useEasing
             useGrouping
@@ -23,6 +23,7 @@ function NumberCard (props) {
         </p>
       </div>
     </Card>
+    
   )
 }
 
