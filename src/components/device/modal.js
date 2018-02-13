@@ -70,7 +70,7 @@ const modal = ({
           </FormItem>
           <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
             {getFieldDecorator('clientId', {
-              initialValue: CLIENT_ID,
+              initialValue:131,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Serial No.' hasFeedback {...formItemLayout}>
@@ -105,9 +105,8 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select Asset ID" >
-                  <Option value="Smart Cooler" >Smart Cooler</Option>
-                  <Option value="Truck" >Truck</Option>
-                  <Option value="Tracker" >Tracker</Option>
+                  <Option value= {10}>Smart Cooler</Option>
+                  <Option value={11} >Truck</Option>
                 </Select>
              )}
           </FormItem>
@@ -122,6 +121,43 @@ const modal = ({
               ]
             })(<Input/>)}
           </FormItem>
+          <FormItem label='Device Type' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('deviceType', {
+              initialValue: item.deviceType,
+              rules: [
+                {
+                  required: true,
+                  message: 'Device Type is required'
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
+          <FormItem label='Branch' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('branchId', {
+              initialValue: item.branchId,
+              rules: [
+                {
+                  required: true,
+                  message: 'Please add branch!'
+                }
+              ]
+            })(<Select placeholder="Select Branch" >
+              <Option value={10}>JMI</Option>
+              <Option value={11} >xyz</Option>
+            </Select>
+              )}
+          </FormItem>
+          <FormItem label='Brand' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('brand', {
+              initialValue: item.brand,
+              rules: [
+                {
+                  required: true,
+                  message: 'Brand is required'
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
           <FormItem label='Device Name' hasFeedback {...formItemLayout}>
             {getFieldDecorator('deviceName', {
               initialValue: item.deviceName,
@@ -133,6 +169,7 @@ const modal = ({
               ]
             })(<Input/>)}
           </FormItem>
+         
           <FormItem label="Status" {...formItemLayout}>
              {getFieldDecorator('status', {
                initialValue: item.status,

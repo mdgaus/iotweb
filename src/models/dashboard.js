@@ -1,8 +1,10 @@
-import {myCity, queryWeather, query} from '../services/dashboard'
+import {myCity, queryWeather, query,allUser} from '../services/dashboard'
 import {parse} from 'qs'
+import { Icon, Card } from 'antd'
+import {color} from "../utils"
 
 let WeatherFunc = {
-    ParseActualData: function (actual, air) {
+    ParseActualDat0a: function (actual, air) {
         let weather = {
             icon: './assets/weather/' + WeatherFunc.ReplaceIcon(actual.channel.item.forecast[0].code) + "_big.png",
             name: actual.channel.item.forecast[0].text ,//WeatherFunc.GetWeatherName(actual.wea),
@@ -56,8 +58,9 @@ export default {
         quote: {
             avatar: './assets/people/3.jpg'
         },
+        dashboardCard: [],
         numbers: [],
-        numbers_2: [],
+        numbers_2:[],
         numbers_3: [],
         recentSales: [],
         recentSales_2: [],
@@ -73,14 +76,15 @@ export default {
     subscriptions : {
         setup({dispatch}) {
             dispatch({type: 'queryWeather'})
-            dispatch({type: 'query'})
+            dispatch({type:'query'})
+            dispatch({ type:'allUser'})
         }
     },
     effects : {
         *query({payload}, {call, put}) {
 
             const data = yield call(query, parse(payload))
-            yield put({type: 'queryWeather', payload: {...data}
+            yield put({type: 'queryWeather', payload:{...data}
             })
         },
         
@@ -97,6 +101,42 @@ export default {
            }
                
                     
+        },
+        *allUser({payload},{call,put}){
+              try{
+                  const user = yield call(allUser, parse(payload))
+                  const dashboardCard = [{
+                      icon: 'team',
+                      color: color.green,
+                      title: 'All User',
+                      number: 0
+                  }, {
+                          icon: 'book',
+                          color: color.plump_purple,
+                          title: 'All Asset',
+                          number: 0
+                      }, {
+                          icon: 'inbox',
+                          color: color.blue,
+                          title: 'All Device',
+                          number: 0
+                      }]
+
+                  dashboardCard[0].number=user.data[0].allUser
+                  dashboardCard[1].number = user.data[0].allAsset
+                  dashboardCard[2].number = user.data[0].allDevice
+                  console.log("dash",dashboardCard);
+                 if(user){
+                     yield put({
+                         type:"userSuccess",
+                         payload: {dashboardCard}
+                     })
+                 }
+                
+              }
+              catch(e){
+                  console.log("error in allUser",e);
+              }
         }
     },
     reducers : {
@@ -110,6 +150,13 @@ export default {
             return {
                 ...state,
                 ...action.payload
+            }
+        },
+        userSuccess(state,action){
+            return {
+                ...state,
+                ...action.payload
+
             }
         }
     }
