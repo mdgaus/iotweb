@@ -1,5 +1,7 @@
 import {myCity, queryWeather, query,allUser} from '../services/dashboard'
 import {parse} from 'qs'
+import { Icon, Card } from 'antd'
+import {color} from "../utils"
 
 let WeatherFunc = {
     ParseActualDat0a: function (actual, air) {
@@ -103,8 +105,27 @@ export default {
         *allUser({payload},{call,put}){
               try{
                   const user = yield call(allUser, parse(payload))
-                  const dashboardCard = user.data
-                  console.log("numbers_2", dashboardCard)
+                  const dashboardCard = [{
+                      icon: 'team',
+                      color: color.green,
+                      title: 'All User',
+                      number: 0
+                  }, {
+                          icon: 'book',
+                          color: color.plump_purple,
+                          title: 'All Asset',
+                          number: 0
+                      }, {
+                          icon: 'inbox',
+                          color: color.blue,
+                          title: 'All Device',
+                          number: 0
+                      }]
+
+                  dashboardCard[0].number=user.data[0].allUser
+                  dashboardCard[1].number = user.data[0].allAsset
+                  dashboardCard[2].number = user.data[0].allDevice
+                  console.log("dash",dashboardCard);
                  if(user){
                      yield put({
                          type:"userSuccess",
