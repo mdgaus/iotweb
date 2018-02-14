@@ -1,6 +1,6 @@
-import {myCity, queryWeather, query} from '../services/dashboard'
+import {myCity, queryWeather, query,allUser} from '../services/dashboard'
 import {parse} from 'qs'
-
+import {color} from '../utils'
 let WeatherFunc = {
     ParseActualData: function (actual, air) {
         let weather = {
@@ -56,6 +56,7 @@ export default {
         quote: {
             avatar: './assets/people/3.jpg'
         },
+        dashboardCard:[],
         numbers: [],
         numbers_2: [],
         numbers_3: [],
@@ -74,6 +75,7 @@ export default {
         setup({dispatch}) {
             dispatch({type: 'queryWeather'})
             dispatch({type: 'query'})
+            dispatch({type:"allUser"})
         }
     },
     effects : {
@@ -97,6 +99,43 @@ export default {
            }
                
                     
+        },
+
+        *allUser({ payload }, { call, put }) {
+            try {
+                const user = yield call(allUser, parse(payload))
+                const dashboardCard = [{
+                    icon: 'team',
+                    color: color.green,
+                    title: 'All User',
+                    number: 0
+                }, {
+                    icon: 'book',
+                    color: color.plump_purple,
+                    title: 'All Asset',
+                    number: 0
+                }, {
+                    icon: 'inbox',
+                    color: color.blue,
+                    title: 'All Device',
+                    number: 0
+                }]
+
+                dashboardCard[0].number = user.data[0].allUser
+                dashboardCard[1].number = user.data[0].allAsset
+                dashboardCard[2].number = user.data[0].allDevice
+                console.log("dash", dashboardCard);
+                if (user) {
+                    yield put({
+                        type: "userSuccess",
+                        payload: {dashboardCard}
+                    })
+                }
+
+            }
+            catch (e) {
+                console.log("error in allUser", e);
+            }
         }
     },
     reducers : {
@@ -110,6 +149,13 @@ export default {
             return {
                 ...state,
                 ...action.payload
+            }
+        },
+         userSuccess(state, action) {
+            return {
+                ...state,
+                ...action.payload
+
             }
         }
     }

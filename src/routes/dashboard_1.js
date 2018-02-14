@@ -22,14 +22,16 @@ const cardStyle = {
 
 function Dashboard({dashboard, dispatch}) {
   const {
-    numbers_2,
+    dashboardCard,
     recentSales_2,
     recentSales_3,
     numbers
   } = dashboard
-  const numberCards = numbers_2.map((item, key) => <Col key={key} lg={8} md={12}>
-    <NumberCard {...item}/>
-  </Col>)
+  const numberCards = dashboardCard.map((item, key) =>
+
+    <Col key={key} lg={8} md={12}>
+      <NumberCard {...item} />
+    </Col>)
 
   return (
     <div className="dashboard-2">
