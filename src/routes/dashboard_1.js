@@ -5,6 +5,7 @@ import NumberCard from '../components/dashboard/numberCard'
 import RecentSales from '../components/dashboard/recentSales'
 import styles from './dashboard.less'
 import {color} from '../utils'
+import IotMap from './map/iotmap'
 
 const bodyStyle = {
   bodyStyle: {
@@ -38,18 +39,8 @@ function Dashboard({dashboard, dispatch}) {
       <Row gutter={24}>
         {numberCards}
       </Row>
-      <Row gutter={24}>
-        <Col lg={12} md={24}>
-          <Card {...cardStyle}>
-            <RecentSales data={recentSales_2}/>
-          </Card>
-        </Col>
-        <Col lg={12} md={24}>
-          <Card {...cardStyle}>
-            <RecentSales data={recentSales_3}/>
-          </Card>
-        </Col>
-      </Row>
+
+      <IotMap />
     </div>
   )
 }
