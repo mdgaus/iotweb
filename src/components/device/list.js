@@ -152,19 +152,19 @@ class list extends React.Component {
       key: 'assetId'
     }, {
       title: 'Region Name',
-      dataIndex: 'regionId',
+      dataIndex: 'regionName',
       width: '10%',
-      key: 'regionId'
+      key: 'regionName'
     }, {
       title: 'Branch Name',
-      dataIndex: 'branchId',
+      dataIndex: 'branchName',
       width: '10%',
-      key: 'branchId'
+      key: 'branchName'
     }, {
       title: 'Status',
       dataIndex: 'status',
       width: '10%',
-      key: 'status'
+      key:'status'
     }, {
       title: 'Operation',
       key: 'operation',

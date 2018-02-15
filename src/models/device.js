@@ -7,6 +7,7 @@ export default {
 
   state: {
     list: [],
+    dropdown:[],
     loading: false,
     currentItem: {},
     modalVisible: false,

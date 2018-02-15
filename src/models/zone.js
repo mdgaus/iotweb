@@ -9,7 +9,7 @@ export default {
         list: [],
         dropDownData:[],
         loading: false,
-        currentItem: {},
+        currentItem:{},
         modalVisible: false,
         modalType: 'create',
         pagination: {

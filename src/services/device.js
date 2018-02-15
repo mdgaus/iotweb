@@ -1,7 +1,7 @@
 import { request } from '../utils'
 
 export async function query (params) {
-  return request('http://139.59.95.113:8080/allDevice', {
+  return request('http://139.59.95.113:8080/allDevice?clientId=131', {
     method: 'get',
     data: params
   })
