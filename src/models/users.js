@@ -27,7 +27,7 @@ export default {
         if (location.pathname === '/user/users') {
           dispatch({
             type: 'query',
-            payload: location.query
+            payload:location.query
           })
         }
       })

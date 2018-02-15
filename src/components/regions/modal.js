@@ -5,6 +5,7 @@ import {
   InputNumber,
   Radio,
   Modal,
+  Select,
   LocaleProvider
 } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US';
@@ -51,7 +52,7 @@ const modal = ({
   const modalOpts = {
     title: `${type === 'create'
       ? 'Add New Region'
-      : 'Edit User'}`,
+      : 'Edit Region'}`,
     visible,
     onOk: handleOk,
     onCancel,
@@ -83,7 +84,21 @@ const modal = ({
               ]
             })(<Input placeholder="Region Name"/>)}
           </FormItem>
-
+          <FormItem label='Status' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('status', {
+              initialValue: item.status,
+              rules: [
+                {
+                  required: true,
+                  message: 'status'
+                }
+              ]
+            })(<Select placeholder="Select Status" >
+                 <Select.Option value="active">Active</Select.Option>
+                  <Select.Option value="inactive">InActive</Select.Option>
+            </Select>
+            )}
+          </FormItem>
         </Form>
       </Modal>
     </LocaleProvider>
