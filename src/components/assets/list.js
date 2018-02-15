@@ -132,9 +132,9 @@ class list extends React.Component {
       width: '10%'
     }, {
       title: 'Asset Type',
-      dataIndex: 'assetType',
+      dataIndex: 'assetTypeName',
       width: '10%',
-      key: 'assetType'
+      key: 'assetTypeName'
     }, {
       title: 'Asset Name',
       dataIndex: 'assetName',
@@ -147,14 +147,14 @@ class list extends React.Component {
       key: 'regionName'
     },  {
       title: 'Zone Name',
-      dataIndex: 'zoneId',
+      dataIndex: 'zoneName',
       width: '10%',
-      key: 'zoneId'
+      key: 'zoneName'
     }, {
       title: 'Branch Name',
-      dataIndex: 'branchId',
+      dataIndex: 'branchName',
       width: '10%',
-      key: 'branchId'
+      key: 'branchName'
     }, {
       title: 'Status',
       dataIndex: 'status',

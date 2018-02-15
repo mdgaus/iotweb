@@ -4,6 +4,7 @@ import {connect} from 'dva'
 import UserList from '../../components/device/list'
 import UserSearch from '../../components/device/search'
 import UserModal from '../../components/device/modal'
+import {apiFunc} from "../../CommonMethods/api"
 import {Row, Col} from 'antd';
 
 function Device({location, dispatch, device}) {
@@ -13,8 +14,14 @@ function Device({location, dispatch, device}) {
     pagination,
     currentItem,
     modalVisible,
+    dropdown,
     modalType
   } = device
+  async function getallasset() {
+    var a= await apiFunc.getAsset();
+    device.dropdown=a.body.data;
+  }
+getallasset();
   const {field, keyword} = location.query
 
   const userModalProps = {
@@ -22,6 +29,7 @@ function Device({location, dispatch, device}) {
       ? {}
       : currentItem,
     type: modalType,
+    dropdown:dropdown,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `device/${modalType}`, payload: data})

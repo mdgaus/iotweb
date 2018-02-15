@@ -30,6 +30,11 @@ apiFunc.getUserTypeList = () => {
        .get(BASE_URL+'/allUserType')
        .query({clientId: 131})
 }
+apiFunc.getAsset=()=>{
+  return superagent
+  .get(BASE_URL+'/allAsset')
+  .query({clientId:131})
+}
 
 export default {
   apiFunc,
