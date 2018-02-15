@@ -33,15 +33,6 @@ export default function ({history, app}) {
                     }
                 },
                 {
-                    path: 'users_list',
-                    name: 'users_list',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/users_list'))
-                        })
-                    }
-                },
-                {
                     path: 'asset/assets',
                     name: 'asset/assets',
                     getComponent(nextState, cb) {

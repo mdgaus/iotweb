@@ -10,11 +10,6 @@ module.exports = [
         icon: 'team',
         clickable: true
     }, {
-        key: 'users_list',
-        name: 'Users',
-        icon: 'team',
-        clickable: true
-    }, {
         key: 'asset',
         name: 'Assets',
         icon: 'team',
