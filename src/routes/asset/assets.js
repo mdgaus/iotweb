@@ -4,11 +4,14 @@ import {connect} from 'dva'
 import UserList from '../../components/assets/list'
 import UserSearch from '../../components/assets/search'
 import UserModal from '../../components/assets/modal'
+import {apiFunc, BASE_URL, CLIENT_ID} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
 
 function Assets({location, dispatch, assets}) {
   const {
     loading,
+    dropDownData,
+    branchDropDown,
     list,
     pagination,
     currentItem,
@@ -17,11 +20,26 @@ function Assets({location, dispatch, assets}) {
   } = assets
   const {field, keyword} = location.query
 
+  async function  assetType(){
+   console.log(22222)
+    var a = await apiFunc.getAssetTypeList()
+    assets.dropDownData = a.body.data;
+  }
+  assetType();
+
+  async function  getBranch(){
+    var a = await apiFunc.getBranchList()
+    assets.branchDropDown = a.body.data;
+  }
+  getBranch();
+
   const userModalProps = {
     item: modalType === 'create'
       ? {}
       : currentItem,
     type: modalType,
+    dropDownData: dropDownData,
+    branchDropDown: branchDropDown,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `assets/${modalType}`, payload: data})

@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react'
 import {routerRedux} from 'dva/router'
 import {connect} from 'dva'
-import UserList from '../../components/table/regions/list'
-import UserSearch from '../../components/table/regions/search'
-import UserModal from '../../components/table/regions/modal'
+import UserList from '../../components/regions/list'
+import UserSearch from '../../components/regions/search'
+import UserModal from '../../components/regions/modal'
 import {Row, Col} from 'antd';
 
 function Regions({location, dispatch, regions}) {
@@ -85,7 +85,7 @@ function Regions({location, dispatch, regions}) {
   }
 
   const UserModalGen = () => <UserModal {...userModalProps}/>
-  
+
 
   return (
     <div className='content-inner'>

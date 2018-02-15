@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import {CLIENT_ID} from '../../CommonMethods/api'
 import {
   Form,
   Input,
@@ -67,26 +68,9 @@ const modal = ({
               initialValue: item._id,
             })(<Input/>)}
           </FormItem>
-          <FormItem label='Serial No.' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('serialNo', {
-              initialValue: item.serialNo,
-              rules: [
-                {
-                  required: true,
-                  message: 'Serial no. is required'
-                }
-              ]
-            })(<Input/>)}
-          </FormItem>
-          <FormItem label='Asset Type Id' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('assetTypeId', {
-              initialValue: item.assetTypeId,
-              rules: [
-                {
-                  required: true,
-                  message: 'Asset Type Id is required'
-                }
-              ]
+          <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('clientId', {
+              initialValue: CLIENT_ID,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Asset Type Name' hasFeedback {...formItemLayout}>
@@ -98,7 +82,7 @@ const modal = ({
                   message: 'Asset Name is required'
                 }
               ]
-            })(<Input/>)}
+            })(<Input placeholder="Asset Type Name"/>)}
           </FormItem>
           <FormItem label="Status" {...formItemLayout}>
              {getFieldDecorator('status', {

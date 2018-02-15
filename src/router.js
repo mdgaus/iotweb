@@ -1,7 +1,6 @@
 import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
-// import login from './routes/login'
 
 export default function ({history, app}) {
     const routes = [
@@ -60,43 +59,36 @@ export default function ({history, app}) {
                         })
                     }
                 },
-                 {
-                    path: 'table/users',
-                    name: 'table/users',
+                {
+                    path: 'device',
+                    name: 'device',
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
-                            cb(null, require('./routes/table/users'))
+                            cb(null, require('./routes/table/device'))
                         })
                     }
-                }, {
+                },
+                {
+                    path: 'user/users',
+                    name: 'user/users',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/user/users'))
+                        })
+                    }
+                },
+                {
+                    path: 'user/user_type',
+                    name: 'user/user_type',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/user/user_type'))
+                        })
+                    }
+                },
+               {
                     path: 'regions',
                     name: 'regions',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/regions'))
-                        })
-                    }
-                }, {
-                    path: 'branch',
-                    name: 'branch',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/branch'))
-                        })
-                    }
-                },
-                 {
-                    path: 'table/regions',
-                    name: 'table/regions',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/table/regions'))
-                        })
-                    }
-                },
-                 {
-                    path: 'table/branch',
-                    name: 'table/branch',
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/table/regions'))
@@ -130,15 +122,6 @@ export default function ({history, app}) {
                     }
                 },
                 {
-                    path: 'region',
-                    name: 'region',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/region/add-region'))
-                        })
-                    }
-                },
-                {
                     path: 'zone',
                     name: 'zone',
                     getComponent(nextState, cb) {
@@ -148,29 +131,11 @@ export default function ({history, app}) {
                     }
                 },
                 {
-                    path: 'users',
-                    name: 'users',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/users'))
-                        })
-                    }
-                },
-                {
-                    path: 'user/userType',
-                    name: 'user/userType',
-                    getComponent(nextState, cb) {
-                        require.ensure([], require => {
-                            cb(null, require('./routes/userType'))
-                        })
-                    }
-                },
-                {
                     path: 'branch',
                     name: 'branch',
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
-                            cb(null, require('./routes/branch'))
+                            cb(null, require('./routes/table/branch'))
                         })
                     }
                 },

@@ -35,32 +35,31 @@ module.exports = [
         icon: 'team',
         clickable: true
     }, {
+        key: 'device',
+        name: 'Devices',
+        icon: 'pushpin-o',
+        clickable: true
+    }, {
         key: 'branch',
         name: 'Branch',
         icon: 'team',
         clickable: true
-    }, 
+    },
     {
         key: 'user',
-        name: 'User',
+        name: 'Users',
         icon: 'team',
         clickable: false,
         child: [
             {
-                key: 'user',
-                name: 'user'
-            }, {
-                key: 'userType',
-                name: 'userType'
+                key: 'users',
+                name: 'Users'
+            },
+            {
+                key: 'user_type',
+                name: 'User Type'
             }
         ]
-    },
-    {
-        key: 'region',
-        name: 'Region',
-        icon: 'pushpin-o',
-        clickable: true,
-
     },
     {
         key: 'zone',

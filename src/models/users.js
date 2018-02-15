@@ -7,6 +7,7 @@ export default {
 
   state: {
     list: [],
+    dropDownData: [],
     loading: false,
     currentItem: {},
     modalVisible: false,
@@ -23,8 +24,7 @@ export default {
   subscriptions: {
     setup ({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/table/users') {
-      
+        if (location.pathname === '/user/users') {
           dispatch({
             type: 'query',
             payload: location.query
@@ -96,11 +96,11 @@ export default {
     *update ({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
       yield put({ type: 'showLoading' })
-      
+
       const id = yield select(({ users }) => users.currentItem._id)
       const newUser = { ...payload, id }
       //newUser._id = users.currentItem._id;
-      
+
       //newUser._id = ({ users }) => users.currentItem._id;
       //console.log(newUser,'users');
       const data = yield call(update, newUser)

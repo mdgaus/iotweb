@@ -9,6 +9,7 @@ import {
   LocaleProvider
 } from 'antd'
 import enUS from 'antd/lib/locale-provider/en_US';
+import {CLIENT_ID} from '../../CommonMethods/api'
 
 const FormItem = Form.Item
 
@@ -27,6 +28,8 @@ const modal = ({
   visible,
   type,
   item = {},
+  dropDownData,
+  branchDropDown,
   onOk,
   onCancel,
   form: {
@@ -61,10 +64,15 @@ const modal = ({
   return (
     <LocaleProvider locale={enUS}>
       <Modal {...modalOpts}>
-        <Form horizontal>
+        <Form layout>
           <FormItem style={displayNone} label='_id' hasFeedback {...formItemLayout}>
             {getFieldDecorator('_id', {
               initialValue: item._id,
+            })(<Input/>)}
+          </FormItem>
+          <FormItem style={displayNone} label='clientId' hasFeedback {...formItemLayout}>
+            {getFieldDecorator('clientId', {
+              initialValue: CLIENT_ID,
             })(<Input/>)}
           </FormItem>
           <FormItem label='Serial No.' hasFeedback {...formItemLayout}>
@@ -76,11 +84,11 @@ const modal = ({
                   message: 'Serial no. is required'
                 }
               ]
-            })(<Input/>)}
+            })(<Input placeholder="Serial No." />)}
           </FormItem>
           <FormItem label='Asset Type' hasFeedback {...formItemLayout}>
-             {getFieldDecorator('assetType', {
-               initialValue: item.assetType,
+             {getFieldDecorator('assetTypeId', {
+               initialValue: item.assetTypeID,
                rules: [
                    {
                        required: true,
@@ -88,44 +96,23 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select Asset Type" >
-                  <Option value="Smart Cooler" >Smart Cooler</Option>
-                  <Option value="Truck" >Truck</Option>
-                  <Option value="Tracker" >Tracker</Option>
+                 {
+                  dropDownData.map((item,index)=>{
+                  return <Select.Option value={item.assetTypeId} key = {index} >{item.assetTypeName}</Select.Option>
+                })}
                 </Select>
              )}
           </FormItem>
           <FormItem label='Asset Name' hasFeedback {...formItemLayout}>
             {getFieldDecorator('assetName', {
-              initialValue: item.assetName,
+              initialValue: item.assetTypeName,
               rules: [
                 {
                   required: true,
-                  message: 'Asset Name is required'
+                  message: 'Asset name is required'
                 }
               ]
-            })(<Input/>)}
-          </FormItem>
-          <FormItem label='Region Name' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('regionId', {
-              initialValue: item.regionId,
-              rules: [
-                {
-                  required: true,
-                  message: 'Region is required'
-                }
-              ]
-            })(<Input/>)}
-          </FormItem>
-          <FormItem label='Zone Name' hasFeedback {...formItemLayout}>
-            {getFieldDecorator('zoneId', {
-              initialValue: item.zoneId,
-              rules: [
-                {
-                  required: true,
-                  message: 'Zone is required'
-                }
-              ]
-            })(<Input/>)}
+            })(<Input placeholder="Asset Name" />)}
           </FormItem>
           <FormItem label='Branch Name' {...formItemLayout}>
              {getFieldDecorator('branchId', {
@@ -137,9 +124,10 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select Branch" >
-                  <Option value="Noida Zone One" >Noida Zone One</Option>
-                  <Option value="Hyderabad Zone One" >Hyderabad Zone One</Option>
-                  <Option value="Delhi Zone One" >Delhi Zone One</Option>
+                   {
+                    branchDropDown.map((item,index)=>{
+                    return <Select.Option value={item.branchId} key = {index} >{item.branchName}</Select.Option>
+                  })}
                 </Select>
              )}
           </FormItem>
@@ -153,8 +141,8 @@ const modal = ({
                    }
                ]
              })(<Select  placeholder="Select Status" >
-                  <Option value="ACTIVE" >Active</Option>
-                  <Option value="INACTIVE" >Inactive</Option>
+                  <Select.Option value="ACTIVE" >Active</Select.Option>
+                  <Select.Option value="INACTIVE" >Inactive</Select.Option>
                 </Select>
              )}
           </FormItem>

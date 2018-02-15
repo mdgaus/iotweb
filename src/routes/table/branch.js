@@ -1,14 +1,17 @@
 import React, {PropTypes} from 'react'
 import {routerRedux} from 'dva/router'
 import {connect} from 'dva'
-import UserList from '../../components/table/branch/list'
-import UserSearch from '../../components/table/branch/search'
-import UserModal from '../../components/table/branch/modal'
+import UserList from '../../components/branch/list'
+import UserSearch from '../../components/branch/search'
+import UserModal from '../../components/branch/modal'
+import {apiFunc, BASE_URL, CLIENT_ID} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
 
 function Branch({location, dispatch, branch}) {
   const {
     loading,
+    regionDropDown,
+    zoneDropDown,
     list,
     pagination,
     currentItem,
@@ -17,11 +20,25 @@ function Branch({location, dispatch, branch}) {
   } = branch
   const {field, keyword} = location.query
 
+  async function  getRegion(){
+    var a = await apiFunc.getRegionList()
+    branch.regionDropDown = a.body.data;
+  }
+  getRegion();
+
+  async function  getZone(){
+    var a = await apiFunc.getZoneList()
+    branch.zoneDropDown = a.body.data;
+  }
+  getZone();
+
   const userModalProps = {
     item: modalType === 'create'
       ? {}
       : currentItem,
     type: modalType,
+    regionDropDown: regionDropDown,
+    zoneDropDown: zoneDropDown,
     visible: modalVisible,
     onOk(data) {
       dispatch({type: `branch/${modalType}`, payload: data})
@@ -85,7 +102,7 @@ function Branch({location, dispatch, branch}) {
   }
 
   const UserModalGen = () => <UserModal {...userModalProps}/>
-  
+
 
   return (
     <div className='content-inner'>
