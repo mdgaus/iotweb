@@ -10,6 +10,7 @@ export default function ({history, app}) {
             getIndexRoute(nextState, cb) {
                 require.ensure([], require => {
                     cb(null, {component: require('./routes/dashboard_1')})
+                    // cb(null, {component: require('./routes/login')})
                 })
             },
             childRoutes: [
@@ -19,6 +20,24 @@ export default function ({history, app}) {
                     getComponent(nextState, cb) {
                         require.ensure([], require => {
                             cb(null, require('./routes/dashboard_1'))
+                        })
+                    }
+                },
+                {
+                    path: 'login',
+                    name: 'Login',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/login'))
+                        })
+                    }
+                },
+                {
+                    path: 'users_list',
+                    name: 'users_list',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/users_list'))
                         })
                     }
                 },

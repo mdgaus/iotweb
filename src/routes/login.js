@@ -2,10 +2,11 @@ import React, {PropTypes} from 'react'
 import { Button, Row, Form, Input } from 'antd'
 import { config } from '../utils'
 import styles from './login.less'
+import {login,logout} from "../services/app" 
 
 const FormItem = Form.Item
 
-const login = ({
+const login1 = ({
   loginButtonLoading,
   onOk,
   form: {
@@ -18,7 +19,16 @@ const login = ({
       if (errors) {
         return
       }
-      onOk(values)
+      // onOk(values)
+      var loginData={emailId:values.username,password:values.password};
+      login(loginData).then(res=>{
+        if (res.success){
+          alert("Login Successful");
+        }
+        else{
+          alert("Incorrect Username or Password !")
+        }
+      })
     })
   }
 
@@ -26,7 +36,7 @@ const login = ({
     <div className={styles.form}>
       <div className={styles.logo}>
         <img src={config.logoSrc} />
-        <span>Berr Admin</span>
+        <span>LOGIN</span>
       </div>
       <form>
         <FormItem hasFeedback>
@@ -54,19 +64,18 @@ const login = ({
             Login
           </Button>
         </Row>
-        <p>
-          <span>User Name：guest</span>
-          <span>Password：guest</span>
-        </p>
+        {/* <p>
+          <span>(Username:111,Password:111)</span>
+        </p> */}
       </form>
     </div>
   )
 }
 
-login.propTypes = {
+login1.propTypes = {
   form: PropTypes.object,
   loginButtonLoading: PropTypes.bool,
   onOk: PropTypes.func
 }
 
-export default Form.create()(login)
+export default Form.create()(login1)
