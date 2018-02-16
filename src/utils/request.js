@@ -13,7 +13,7 @@ export default function request(url, options) {
       format: 'json'
     })
   } else {
-    console.log(url,options.data,"hi")
+    console.log(url,options.data)
     return Ajax.ajax({
       url: url,
       method: options.method || 'get',

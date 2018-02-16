@@ -21,7 +21,6 @@ function Assets({location, dispatch, assets}) {
   const {field, keyword} = location.query
 
   async function  assetType(){
-   console.log(22222)
     var a = await apiFunc.getAssetTypeList()
     assets.dropDownData = a.body.data;
   }

@@ -82,7 +82,7 @@ const modal = ({
                   message: 'Email Id is required'
                 }
               ]
-            })(<Input/>)}
+            })(type==="update"?<Input disabled={true}/>:<Input placeholder="Enter Email"/>)}
           </FormItem>
           <FormItem label='Password' hasFeedback {...formItemLayout}>
             {getFieldDecorator('password', {
@@ -93,7 +93,7 @@ const modal = ({
                   message: 'Password is required'
                 }
               ]
-            })(<Input/>)}
+            })(type==="update"?<Input disabled={true}/>:<Input placeholder="Enter Password"/>)}
           </FormItem>
           <FormItem label='User Name' hasFeedback {...formItemLayout}>
             {getFieldDecorator('name', {
@@ -104,7 +104,7 @@ const modal = ({
                   message: 'User Name is required'
                 }
               ]
-            })(<Input/>)}
+            })(type === "update" ? <Input disabled={true} /> : <Input placeholder="Enter User Name" />)}
           </FormItem>
           <FormItem label='User Type' hasFeedback {...formItemLayout}>
              {getFieldDecorator('userTypeId', {
@@ -115,7 +115,7 @@ const modal = ({
                        message: 'User Type is required'
                    }
                ]
-             })(<Select  placeholder="Select User Type" >
+             })(type==="update"?<Select placeholder="Select User Type" disabled ={true}>
                 {
                   dropDownData.map((item, index) => {
                     return <Select.Option value={item.userTypeId} key={item._id}>
@@ -123,7 +123,15 @@ const modal = ({
                       </Select.Option>
                   })
                 }
-                </Select>
+             </Select> : <Select placeholder="Select User Type" >
+                 {
+                   dropDownData.map((item, index) => {
+                     return <Select.Option value={item.userTypeId} key={item._id}>
+                       {item.userType}
+                     </Select.Option>
+                   })
+                 }
+               </Select>
              )}
           </FormItem>
           <FormItem label="Status" {...formItemLayout}>
