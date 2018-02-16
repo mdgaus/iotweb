@@ -72,7 +72,7 @@ export class IotMap extends Component {
               temp={device.temprature}
               position={{lat: device.lat, lng: device.lng}}
               icon={{
-                url: "src/routes/map/"+device.deviceType+".png"
+                url: "assets/"+device.deviceType+".png"
               }} />
           })}
         <InfoWindow
