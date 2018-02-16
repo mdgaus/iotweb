@@ -1,7 +1,7 @@
 import { request } from '../utils'
 
 export async function query (params) {
-  return request('http://139.59.95.113:8080/allUser', {
+  return request('http://139.59.95.113:8080/allUser?clientId=131', {
     method: 'get',
     data: params
   })
@@ -10,7 +10,7 @@ export async function query (params) {
 export async function create (params) {
   return request('http://139.59.95.113:8080/addUser', {
     method: 'post',
-    data: params
+    data: params 
   })
 }
 

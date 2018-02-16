@@ -52,7 +52,7 @@ const modal = ({
   const modalOpts = {
     title: `${type === 'create'
       ? 'Create New Asset Type'
-      : 'Edit Asset'}`,
+      : 'Edit Asset Type'}`,
     visible,
     onOk: handleOk,
     onCancel,
