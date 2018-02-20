@@ -70,6 +70,7 @@ export class IotMap extends Component {
               deviceType={device.deviceType}
               status={device.status}
               temp={device.temprature}
+              deviceId={device.deviceId}
               position={{lat: device.lat, lng: device.lng}}
               icon={{
                 url: "src/routes/map/"+device.deviceType+".png"
@@ -82,6 +83,9 @@ export class IotMap extends Component {
               <h5>{this.state.selectedPlace.deviceType}</h5>
               <div>Status: {this.state.selectedPlace.status}</div>
               <div>Temprature: {this.state.selectedPlace.temp}</div>
+              <div>
+                <a target="_blank" href={`#/devicemap?id=${this.state.selectedPlace.deviceId}`}>click</a>
+              </div>
             </div>
         </InfoWindow>
       </Map>

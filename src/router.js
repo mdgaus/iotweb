@@ -24,6 +24,15 @@ export default function ({history, app}) {
                     }
                 },
                 {
+                    path: 'devicemap',
+                    name: 'devicemap',
+                    getComponent(nextState, cb) {
+                        require.ensure([], require => {
+                            cb(null, require('./routes/map/devicemap'))
+                        })
+                    }
+                },
+                {
                     path: 'login',
                     name: 'Login',
                     getComponent(nextState, cb) {
