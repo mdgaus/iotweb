@@ -1,8 +1,9 @@
 import React from 'react'
 import {Router} from 'dva/router'
 import App from './routes/app'
+import login from "./routes/login"
 
-export default function ({history, app}) {
+export default function ({history,app}) {
     const routes = [
         {
             path: '/',

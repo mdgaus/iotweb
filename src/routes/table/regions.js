@@ -66,13 +66,13 @@ function Regions({location, dispatch, regions}) {
     onSearch(fieldsValue) {
       fieldsValue.keyword.length
         ? dispatch(routerRedux.push({
-          pathname: '/table/regions',
+          pathname: 'regions',
           query: {
             field: fieldsValue.field,
             keyword: fieldsValue.keyword
           }
         }))
-        : dispatch(routerRedux.push({pathname: '/table/regions'}))
+        : dispatch(routerRedux.push({pathname:'regions'}))
     },
     onAdd() {
       dispatch({

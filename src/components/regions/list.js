@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Dropdown, Button, Menu, Icon, Modal,LocaleProvider} from 'antd'
+import {Table, Dropdown, Button, Menu, Icon, Modal,LocaleProvider,Select} from 'antd'
 import {TweenOneGroup} from 'rc-tween-one'
 import styles from './list.less'
 const confirm = Modal.confirm
@@ -130,17 +130,23 @@ class list extends React.Component {
       dataIndex: 'regionName',
       width: '10%',
       key: 'regionId'
-    }, {
+    },{
+         title: 'Status',
+         dataIndex:'status',
+         width: '10%',
+         key: 'status'
+    } ,
+    {
       title: 'Operation',
       key: 'operation',
-      width: '10%',
+      width:'10%',
       render: (text, record) => {
          return (<Dropdown overlay={<Menu onClick={this.handleMenuClick.bind(null, record)}>
            <Menu.Item key='1'>Edit</Menu.Item>
 
          </Menu>}>
            <Button style={{ border: 'none' }}>
-             <Icon style={{ marginRight: 2 }} type='bars' />
+             <Icon style={{ marginRight:2 }} type='bars' />
              <Icon type='down' />
            </Button>
          </Dropdown>)

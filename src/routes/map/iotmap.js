@@ -73,7 +73,7 @@ export class IotMap extends Component {
               deviceId={device.deviceId}
               position={{lat: device.lat, lng: device.lng}}
               icon={{
-                url: "src/routes/map/"+device.deviceType+".png"
+                url: "assets/"+device.deviceType+".png"
               }} />
           })}
         <InfoWindow
