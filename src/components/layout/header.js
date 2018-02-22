@@ -2,7 +2,10 @@ import React from 'react'
 import {Menu, Icon, Popover, Badge, M,Avatar} from 'antd'
 import styles from './main.less'
 import Menus from './menu'
+import config from  "../../utils"
+import App from "../../routes/app"
 import { Layout,Button } from 'antd';
+import {BrowserRouter as Router} from "react-router-dom"
 import SemanticButton from '../../components/semanticui/semantic-button'
 import BadgeBox from './badgeBox';
 const SubMenu = Menu.SubMenu
@@ -19,7 +22,6 @@ const style={
 }
 class Header extends React.Component {
 
-
   constructor(props) {
       super(props);
 		
@@ -30,14 +32,18 @@ class Header extends React.Component {
    }
   
 
-   
+ logout(){
+   localStorage.removeItem("username")
+     window.location.href="/"
+ }
   handleClickMenu = e => e.key === 'logout' && logout()
   
 
 render(){
   return (
+    
     <div className={styles.header  + " " + this.props.headerTheme}  >
-   
+      
     {this.props.isNavbar
       ? <Popover 
           placement='bottomLeft'
@@ -65,16 +71,9 @@ render(){
     
   </SubMenu>
         <BadgeBox pr={this.props} />
-      </Menu>
-
-      
-   
-     
+      </Menu>  
     </div>
   )
 }
 }
-
-
-
 export default Header

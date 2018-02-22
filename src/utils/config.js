@@ -4,5 +4,13 @@ module.exports = {
   footerText: 'IoT Admin All Rights Reserved 2018',
   logoSrc: 'assets/lamp.svg',
   logoText: 'IoT',
-  needLogin: false
+  needLogin:()=>{
+    if(localStorage.getItem("username")==null)
+    {
+     
+      return true
+    }
+    else return false
+  }
+
 }

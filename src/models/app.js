@@ -1,17 +1,17 @@
 import {login, userInfo, logout} from '../services/app'
 import {parse} from 'qs'
 
-console.log(localStorage.getItem('berrAdminSiderFoldRight') == null ? 'false': localStorage.getItem('berrAdminSiderFoldRight'));
+console.log(localStorage.getItem('sberrAdminSiderFoldRight') == null ? 'false': localStorage.getItem('berrAdminSiderFoldRight'));
 
 export default {
   namespace : 'app',
   state : {
     login: false,
-    loading: false,
+    loading:false,
     lock:false,
     SignUp:false,
     user: {
-      name: 'TeKa'
+      name:localStorage.getItem("username")
     },
     loginButtonLoading: false,
     menuPopoverVisible: false,
@@ -20,14 +20,14 @@ export default {
     menuTheme: localStorage.getItem('berrAdminMenuTheme')=="" ?  'dark': localStorage.getItem('berrAdminMenuTheme'),
     headerTheme: localStorage.getItem('berrAdminHeaderTheme')=="" ?  'dark': localStorage.getItem('berrAdminHeaderTheme'),
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys: JSON.parse(localStorage.getItem('navOpenKeys') || '[]'), //The sidebar menu opens the keys
+    navOpenKeys:JSON.parse(localStorage.getItem('navOpenKeys') || '[]'), //The sidebar menu opens the keys
   },
-
+   
   
 
   subscriptions : {
     setup({dispatch}) {
-      dispatch({type: 'queryUser'})
+      dispatch({type:"login"})
       window.onresize = function () {
         dispatch({type: 'changeNavbar'})
       }
@@ -42,7 +42,7 @@ export default {
           type: 'loginSuccess',
           payload: {
             user: {
-              name: payload.username
+              name:payload.emailId
             }
           }
         })
@@ -52,7 +52,7 @@ export default {
     },
     *queryUser({ payload }, {call, put}) {
       yield put({type: 'showLoading'})
-      const data = yield call(userInfo, parse(payload))
+      const data = yield call(userinfo, parse(payload))
       if (data.success) {
         yield put({
           type: 'loginSuccess',
@@ -114,11 +114,12 @@ export default {
  
   reducers : {
     loginSuccess(state, action) {
+
       return {
         ...state,
         ...action.payload,
         login: true,
-        loginButtonLoading: false
+        loginButtonLoading:false
       }
     },
     logoutSuccess(state) {
