@@ -16,6 +16,7 @@ app.model(require('./models/zone'))
 app.model(require('./models/branch'))
 app.model(require('./models/users'))
 app.model(require('./models/user_type'))
+app.model(require('./models/devicemap'))
 
 // 3. Router
 app.router(require('./router'))

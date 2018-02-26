@@ -13,7 +13,7 @@ const mapCenter = {
   lng: 77.32826332
 }
 
-export class IotMap extends Component {
+export default class IotMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +59,7 @@ export class IotMap extends Component {
       lng
     } = this.state.allDeviceData[0] || mapCenter
     return (
-      <Map google={this.props.google}
+      <Map google={window.google}
           zoom={15}
           initialCenter={{
             lat: lat,
@@ -70,9 +70,10 @@ export class IotMap extends Component {
               deviceType={device.deviceType}
               status={device.status}
               temp={device.temprature}
+              deviceId={device.deviceId}
               position={{lat: device.lat, lng: device.lng}}
               icon={{
-                url: "src/routes/map/"+device.deviceType+".png"
+                url: "assets/"+device.deviceType+".png"
               }} />
           })}
         <InfoWindow
@@ -82,6 +83,9 @@ export class IotMap extends Component {
               <h5>{this.state.selectedPlace.deviceType}</h5>
               <div>Status: {this.state.selectedPlace.status}</div>
               <div>Temprature: {this.state.selectedPlace.temp}</div>
+              <div>
+                <a target="_blank" href={`#/devicemap?id=${this.state.selectedPlace.deviceId}`}>click</a>
+              </div>
             </div>
         </InfoWindow>
       </Map>
@@ -95,7 +99,7 @@ IotMap.propTypes = {
 IotMap.defaultProps = {
   all_device_api: BASE_URL+"/allDeviceData?clientId="+CLIENT_ID
 }
-
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCfPJonsREY-XuLLfLPSlYjfihOhkmbaE0'
-})(IotMap)
+// google api loads manually if no api script in application
+// export default GoogleApiWrapper({
+//   apiKey: 'AIzaSyCfPJonsREY-XuLLfLPSlYjfihOhkmbaE0'
+// })(IotMap)
