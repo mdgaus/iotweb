@@ -6,11 +6,15 @@ function DeviceMap({devicemap, dispatch}) {
   const {
     deviceHistory
   } = devicemap
+  // history array is for demo path if no data available
+  const history = [
+    {lat: 28.59663335, lng: 77.32828849},
+    {lat: 28.5867417, lng: 77.30819544}
+  ]
 
   return (
     <div>
-      Gaus
-      <DeviceHistoryMap deviceHistory={deviceHistory}/>
+      <DeviceHistoryMap deviceHistory={history}/>
     </div>
   )
 }

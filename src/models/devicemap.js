@@ -12,7 +12,6 @@ export default {
     setup ({ dispatch, history }) {
       history.listen(location => {
         var deviceId = {deviceId: location.query.id}
-        console.log("deviceId", deviceId)
         if (location.pathname === '/devicemap') {
           dispatch({
             type: 'query',
