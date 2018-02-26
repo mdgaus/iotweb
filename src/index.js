@@ -1,9 +1,9 @@
 import './index.html'
 import dva from 'dva'
+import { Router } from 'dva/router';
 
 // 1. Initialize
 const app = dva()
-
 // 2. Model
 
 app.model(require('./models/app'))
@@ -22,4 +22,4 @@ app.model(require('./models/devicemap'))
 app.router(require('./router'))
 
 // 4. Start
-app.start('#root')
+  app.start('#root')

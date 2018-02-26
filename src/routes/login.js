@@ -2,10 +2,10 @@ import React, {PropTypes} from 'react'
 import { Button, Row, Form, Input } from 'antd'
 import { config } from '../utils'
 import styles from './login.less'
+import {routerRedux} from 'dva/router'
 import {login,logout} from "../services/app" 
 
 const FormItem = Form.Item
-
 const login1 = ({
   loginButtonLoading,
   onOk,
@@ -16,31 +16,23 @@ const login1 = ({
 }) => {
   function handleOk () {
     validateFieldsAndScroll((errors, values) => {
-      if (errors) {
-        return
-      }
-      // onOk(values)
-      var loginData={emailId:values.username,password:values.password};
-      login(loginData).then(res=>{
-        if (res.success){
-          alert("Login Successful");
-        }
-        else{
-          alert("Incorrect Username or Password !")
-        }
-      })
+  
+       onOk(values)
     })
   }
+  
 
   return (
+   
     <div className={styles.form}>
       <div className={styles.logo}>
         <img src={config.logoSrc} />
         <span>LOGIN</span>
       </div>
+      
       <form>
         <FormItem hasFeedback>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('emailId', {
             rules: [
               {
                 required: true,
@@ -64,9 +56,6 @@ const login1 = ({
             Login
           </Button>
         </Row>
-        {/* <p>
-          <span>(Username:111,Password:111)</span>
-        </p> */}
       </form>
     </div>
   )

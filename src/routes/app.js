@@ -39,11 +39,15 @@ function App({ children, location, dispatch, app }) {
   const loginProps = {
     loading,
     loginButtonLoading,
+   
     onOk(data) {
-      dispatch({ type: 'app/login', payload: data })
+     //var newdata={emailId:data.username,password:data.password}
+      dispatch({ type:'app/login', payload: data })
+      localStorage.setItem("username",data.emailId)
     }
+   
   }
-
+ 
   const headerProps = {
     user,
     siderFold,siderFoldRight,
@@ -122,6 +126,7 @@ function App({ children, location, dispatch, app }) {
  
 
   if (SignUp) {
+
     return (
       <div>
         <Spin tip='Loading...' spinning={loading} size='large'>
@@ -136,7 +141,7 @@ function App({ children, location, dispatch, app }) {
       </div>
     )
 
-  } else if (config.needLogin) {
+  } else if (config.needLogin()) {
     if (!login) {
       return (
         <div>
@@ -150,7 +155,7 @@ function App({ children, location, dispatch, app }) {
     }
   }
 
-  if ((login || !config.needLogin)) {
+  if ((login || !config.needLogin())) {
     return (
       <div
         className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold  }, {  [styles.withnavbar]: isNavbar  })}>

@@ -44,7 +44,7 @@ class RightSider extends React.Component {
   render() {
     return (
 
-      <Sider
+      <Sider>
       breakpoint="xs"
         className="rightSideBar"
         collapsible={true}

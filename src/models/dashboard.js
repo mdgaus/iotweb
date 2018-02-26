@@ -124,7 +124,7 @@ export default {
                 dashboardCard[0].number = user.data[0].allUser
                 dashboardCard[1].number = user.data[0].allAsset
                 dashboardCard[2].number = user.data[0].allDevice
-                console.log("dash", dashboardCard);
+
                 if (user) {
                     yield put({
                         type: "userSuccess",

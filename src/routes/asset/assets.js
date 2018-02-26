@@ -6,6 +6,7 @@ import UserSearch from '../../components/assets/search'
 import UserModal from '../../components/assets/modal'
 import {apiFunc, BASE_URL, CLIENT_ID} from '../../CommonMethods/api'
 import {Row, Col} from 'antd';
+import { locationShape } from 'react-router';
 
 function Assets({location, dispatch, assets}) {
   const {
